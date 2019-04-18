@@ -1,6 +1,7 @@
 package com.countries
 
 import android.app.Application
+import com.countries.dagger.ApplicationComponent
 import com.countries.dagger.DaggerApplicationComponent
 
 class CountriesApplication : Application() {
@@ -10,5 +11,7 @@ class CountriesApplication : Application() {
         getApplicationComponent().inject(this)
     }
 
-    private fun getApplicationComponent() = DaggerApplicationComponent.builder().application(this).build()
+    private fun getApplicationComponent(): ApplicationComponent {
+        return DaggerApplicationComponent.builder().application(this).build()
+    }
 }

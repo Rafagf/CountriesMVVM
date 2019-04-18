@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">listofcountries</string>
+    <string name="title_activity_country_list">CountryListActivity</string>
 </resources>
