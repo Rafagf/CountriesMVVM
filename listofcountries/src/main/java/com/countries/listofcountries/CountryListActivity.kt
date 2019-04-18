@@ -22,5 +22,4 @@ class CountryListActivity : DaggerAppCompatActivity() {
                 .setAction("Action", null).show()
         }
     }
-
 }

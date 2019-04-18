@@ -2,11 +2,10 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android'
+apply from: '../detekt.gradle'
 
 android {
     compileSdkVersion 28
-
-
 
     defaultConfig {
         minSdkVersion 21
@@ -54,6 +53,7 @@ dependencies {
     kaptAndroidTest 'com.google.dagger:dagger-compiler:2.21'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
+
 repositories {
     mavenCentral()
 }
