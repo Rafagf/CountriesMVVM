@@ -1,13 +1,16 @@
 package com.countries.listofcountries
 
 import android.os.Bundle
+import com.countries.core.api.CountryApi
 import com.google.android.material.snackbar.Snackbar
-import androidx.appcompat.app.AppCompatActivity;
-import com.countries.listofcountries.R
-
+import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_country_list.*
+import javax.inject.Inject
 
-class CountryListActivity : AppCompatActivity() {
+class CountryListActivity : DaggerAppCompatActivity() {
+
+    @Inject
+    lateinit var countryApi: CountryApi
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -15,7 +18,7 @@ class CountryListActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
 
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+            Snackbar.make(view, countryApi.toString(), Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
         }
     }
