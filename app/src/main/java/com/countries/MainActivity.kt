@@ -1,7 +1,8 @@
-package com.countries.mvvm
+package com.countries
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.countries.mvvm.R
 
 class MainActivity : AppCompatActivity() {
 
