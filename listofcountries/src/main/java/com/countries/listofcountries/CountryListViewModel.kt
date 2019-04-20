@@ -1,4 +1,6 @@
 package com.countries.listofcountries
 
-class CountryListViewModel {
+import javax.inject.Inject
+
+class CountryListViewModel @Inject constructor() {
 }
