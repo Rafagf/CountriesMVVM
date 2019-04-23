@@ -1,0 +1,34 @@
+package com.countries.listofcountries
+
+import android.content.res.Resources
+import com.countries.core.getFlagUrl
+import com.countries.core.models.Country
+import javax.inject.Inject
+
+
+class CountryListViewModelMapper @Inject constructor(private val resources: Resources) {
+
+    fun map(country: Country): CountryListModel {
+        return CountryListModel(
+            name = country.name,
+            flagUrl = getFlagUrl(country.alpha2Code),
+            continent = getContinent(country),
+            population = getPopulation(country)
+        )
+    }
+
+    private fun getContinent(country: Country): String {
+        return when (country.continent?.isNotEmpty()) {
+            true -> "${resources.getString(R.string.continent)}: ${country.continent}"
+            else -> "${resources.getString(R.string.continent)}: -"
+        }
+    }
+
+    private fun getPopulation(country: Country): String {
+        return when (country.population?.isNotEmpty()) {
+            true -> "${resources.getString(R.string.population)}: ${country.population}"
+            else -> "${resources.getString(R.string.population)}: -"
+        }
+    }
+}
+

@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">listofcountries</string>
-    <string name="title_activity_country_list">CountryListActivity</string>
+    <string name="continent">Continent</string>
+    <string name="population">Population</string>
 </resources>
