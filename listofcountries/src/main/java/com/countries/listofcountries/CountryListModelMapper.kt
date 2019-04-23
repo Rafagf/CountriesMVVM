@@ -3,6 +3,7 @@ package com.countries.listofcountries
 import android.content.res.Resources
 import com.countries.core.getFlagUrl
 import com.countries.core.models.Country
+import com.countries.core.toPopulationFormat
 import javax.inject.Inject
 
 
@@ -32,7 +33,7 @@ class CountryListModelMapper @Inject constructor(private val resources: Resource
 
     private fun getPopulation(country: Country): String {
         return when (country.population?.isNotEmpty()) {
-            true -> "${resources.getString(R.string.population)}: ${country.population}"
+            true -> "${resources.getString(R.string.population)}: ${country.population?.toLong()?.toPopulationFormat()}"
             else -> "${resources.getString(R.string.population)}: -"
         }
     }
