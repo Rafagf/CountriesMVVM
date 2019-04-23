@@ -6,7 +6,7 @@ import com.countries.core.models.Country
 import javax.inject.Inject
 
 
-class CountryListViewModelMapper @Inject constructor(private val resources: Resources) {
+class CountryListModelMapper @Inject constructor(private val resources: Resources) {
 
     fun map(country: Country): CountryListModel {
         return CountryListModel(
@@ -15,6 +15,12 @@ class CountryListViewModelMapper @Inject constructor(private val resources: Reso
             continent = getContinent(country),
             population = getPopulation(country)
         )
+    }
+
+    fun map(countryList: List<Country>): List<CountryListModel> {
+        return countryList.map {
+            map(it)
+        }
     }
 
     private fun getContinent(country: Country): String {

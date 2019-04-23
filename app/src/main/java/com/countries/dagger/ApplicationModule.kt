@@ -9,8 +9,9 @@ import dagger.Provides
 class ApplicationModule {
 
     @Provides
-    internal fun provideContext(application: Application) = application
+    internal fun provideContext(application: Application) = application.applicationContext
 
     @Provides
     internal fun provideResources(context: Context) = context.resources
+
 }

@@ -1,7 +1,7 @@
 package com.countries.listofcountries
 
 import android.os.Bundle
-import android.widget.Toast
+import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
@@ -22,7 +22,7 @@ class CountryListActivity : DaggerAppCompatActivity() {
         setSupportActionBar(toolbar)
         viewModel = ViewModelProviders.of(this, viewModelFactory)[CountryListViewModel::class.java]
         viewModel.liveData.observe(this, Observer {
-            Toast.makeText(this, it.toString(), Toast.LENGTH_LONG).show()
+            Log.d("LiveData", it.toString())
         })
     }
 
