@@ -2,9 +2,11 @@ package com.countries.listofcountries
 
 import android.os.Bundle
 import android.view.Menu
+import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.miguelcatalan.materialsearchview.MaterialSearchView
 import dagger.android.support.DaggerAppCompatActivity
@@ -38,9 +40,10 @@ class CountryListActivity : DaggerAppCompatActivity() {
                 }
 
                 is CountryListViewModel.Model.Content -> {
+                    //todo enable search button (should be disabled until this point)
                     (countriesRecyclerView.adapter as CountryListAdapter).run {
                         list.clear()
-                        list.addAll(it.countries)
+                        list.addAll(it.countriesToDisplay)
                         notifyDataSetChanged()
                     }
                 }
@@ -64,7 +67,13 @@ class CountryListActivity : DaggerAppCompatActivity() {
         countriesRecyclerView.adapter = CountryListAdapter()
         countriesRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                //todo implement
+                //todo should this go to the view model?
+                val firstVisibleItem =
+                    (countriesRecyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
+                when (firstVisibleItem > 0) {
+                    true -> scrollToTop.visibility = View.VISIBLE
+                    false -> scrollToTop.visibility = View.GONE
+                }
             }
         })
     }
@@ -73,12 +82,12 @@ class CountryListActivity : DaggerAppCompatActivity() {
         searchView.run {
             setOnQueryTextListener(object : MaterialSearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String): Boolean {
-                    //todo implement
+                    viewModel.onSearchQueryChanged(query)
                     return false
                 }
 
-                override fun onQueryTextChange(newText: String): Boolean {
-                    //todo implement
+                override fun onQueryTextChange(query: String): Boolean {
+                    viewModel.onSearchQueryChanged(query)
                     return false
                 }
             })

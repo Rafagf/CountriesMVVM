@@ -23,7 +23,7 @@ class CountryListViewModel @Inject constructor(
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .map {
-                    createNextModel(Event.CountriesReady(it))
+                    createNextModel(Event.CountriesFetched(it))
                 }
                 .toObservable()
                 .startWith(Model.Loading)
@@ -36,8 +36,27 @@ class CountryListViewModel @Inject constructor(
         )
     }
 
-    private fun createNextModel(event: Event.CountriesReady): Model {
-        return Model.Content(mapper.map(event.payload))
+    private fun createNextModel(event: Event): Model {
+        return when (event) {
+            is Event.CountriesFetched -> getContentModel(event, liveData.value!!)
+            is Event.CountriesFiltered -> getContentModel(event, liveData.value!!)
+        }
+    }
+
+    private fun getContentModel(event: Event, currentState: Model): Model.Content {
+        return when (event) {
+            is Event.CountriesFetched -> {
+                val countries = mapper.map(event.payload)
+                Model.Content(baseCountries = countries, countriesToDisplay = countries)
+            }
+            is Event.CountriesFiltered -> {
+                val countries = (currentState as Model.Content).baseCountries
+                val filtered = countries.filter {
+                    it.name.toLowerCase().startsWith(event.query.toLowerCase())
+                }
+                Model.Content(baseCountries = countries, countriesToDisplay = filtered)
+            }
+        }
     }
 
     override fun onCleared() {
@@ -45,14 +64,23 @@ class CountryListViewModel @Inject constructor(
         super.onCleared()
     }
 
+    fun onSearchQueryChanged(query: String) {
+        val model = createNextModel(Event.CountriesFiltered(query))
+        liveData.postValue(model)
+    }
+
     sealed class Event {
-        data class CountriesReady(val payload: List<Country>) : Event()
+        data class CountriesFetched(val payload: List<Country>) : Event()
+        data class CountriesFiltered(val query: String) : Event()
     }
 
     sealed class Model {
         object Empty : Model()
         object Error : Model()
         object Loading : Model()
-        data class Content(val countries: List<CountryListModel>) : Model()
+        data class Content(
+            val baseCountries: List<CountryListModel>,
+            val countriesToDisplay: List<CountryListModel>
+        ) : Model()
     }
 }
