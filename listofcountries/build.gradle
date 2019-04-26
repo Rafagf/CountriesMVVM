@@ -56,6 +56,9 @@ dependencies {
     //Search
     implementation 'com.miguelcatalan:materialsearchview:1.4.0'
 
+    //Image loader
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+
     compile project(path: ':core')
 
 }

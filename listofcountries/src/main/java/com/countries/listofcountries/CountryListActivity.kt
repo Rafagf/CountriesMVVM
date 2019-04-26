@@ -1,11 +1,11 @@
 package com.countries.listofcountries
 
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.RecyclerView
 import com.miguelcatalan.materialsearchview.MaterialSearchView
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_country_list.*
@@ -22,9 +22,30 @@ class CountryListActivity : DaggerAppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_country_list)
         setSupportActionBar(toolbar)
-        setViewModel()
         setSearchView()
+        setCountryList()
         setScrollToTopListener()
+
+        viewModel = ViewModelProviders.of(this, viewModelFactory)[CountryListViewModel::class.java]
+        viewModel.liveData.observe(this, Observer {
+            when (it) {
+                is CountryListViewModel.Model.Loading -> {
+                    //todo implement
+                }
+
+                is Error -> {
+                    //todo implement
+                }
+
+                is CountryListViewModel.Model.Content -> {
+                    (countriesRecyclerView.adapter as CountryListAdapter).run {
+                        list.clear()
+                        list.addAll(it.countries)
+                        notifyDataSetChanged()
+                    }
+                }
+            }
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -39,10 +60,12 @@ class CountryListActivity : DaggerAppCompatActivity() {
         viewModel.start()
     }
 
-    private fun setViewModel() {
-        viewModel = ViewModelProviders.of(this, viewModelFactory)[CountryListViewModel::class.java]
-        viewModel.liveData.observe(this, Observer {
-            Log.d("LiveData", it.toString())
+    private fun setCountryList() {
+        countriesRecyclerView.adapter = CountryListAdapter()
+        countriesRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                //todo implement
+            }
         })
     }
 
