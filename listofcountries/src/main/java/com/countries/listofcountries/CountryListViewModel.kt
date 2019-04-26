@@ -27,7 +27,7 @@ class CountryListViewModel @Inject constructor(
                 }
                 .toObservable()
                 .startWith(Model.Loading)
-                .onErrorResumeNext { e: Throwable ->
+                .onErrorResumeNext { _: Throwable ->
                     Observable.just(Model.Error)
                 }
                 .subscribe {
