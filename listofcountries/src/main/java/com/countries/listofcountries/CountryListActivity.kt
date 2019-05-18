@@ -2,13 +2,14 @@ package com.countries.listofcountries
 
 import android.os.Bundle
 import android.view.Menu
-import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.countries.core.AppNavigator
+import com.countries.core.isAtTop
+import com.countries.core.visibleOrGone
 import com.miguelcatalan.materialsearchview.MaterialSearchView
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_country_list.*
@@ -30,7 +31,7 @@ class CountryListActivity : DaggerAppCompatActivity() {
         setSupportActionBar(toolbar)
         setSearchView()
         setCountryList()
-        setScrollToTopListener()
+        setScrollToTopButton()
 
         viewModel = ViewModelProviders.of(this, viewModelFactory)[CountryListViewModel::class.java]
         viewModel.liveData.observe(this, Observer {
@@ -71,18 +72,6 @@ class CountryListActivity : DaggerAppCompatActivity() {
         countriesRecyclerView.adapter = CountryListAdapter(onClick = {
             navigator.countryDetailedNavigator.open(this, it)
         })
-
-        countriesRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                //todo should this go to the view model?
-                val firstVisibleItem =
-                    (countriesRecyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
-                when (firstVisibleItem > 0) {
-                    true -> scrollToTop.visibility = View.VISIBLE
-                    false -> scrollToTop.visibility = View.GONE
-                }
-            }
-        })
     }
 
     private fun setSearchView() {
@@ -111,9 +100,16 @@ class CountryListActivity : DaggerAppCompatActivity() {
         }
     }
 
-    private fun setScrollToTopListener() {
-        scrollToTop.setOnClickListener {
+    private fun setScrollToTopButton() {
+        countriesRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                scrollToTop.visibleOrGone(!(countriesRecyclerView.layoutManager as LinearLayoutManager).isAtTop())
+            }
+        })
 
+        scrollToTop.setOnClickListener {
+            (countriesRecyclerView.layoutManager as LinearLayoutManager).scrollToPosition(0)
         }
     }
 }
