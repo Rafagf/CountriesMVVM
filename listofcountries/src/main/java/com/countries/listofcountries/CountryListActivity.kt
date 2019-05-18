@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.countries.core.AppNavigator
 import com.countries.core.isAtTop
+import com.countries.core.setStatusBarColor
 import com.countries.core.visibleOrGone
 import com.miguelcatalan.materialsearchview.MaterialSearchView
 import dagger.android.support.DaggerAppCompatActivity
@@ -90,11 +91,11 @@ class CountryListActivity : DaggerAppCompatActivity() {
 
             setOnSearchViewListener(object : MaterialSearchView.SearchViewListener {
                 override fun onSearchViewShown() {
-                    //todo implement grey
+                    setStatusBarColor(R.color.plain_grey)
                 }
 
                 override fun onSearchViewClosed() {
-                    //todo implement primary
+                    setStatusBarColor(R.color.color_primary)
                 }
             })
         }

@@ -1,6 +1,8 @@
 package com.countries.core
 
+import android.app.Activity
 import android.view.View
+import androidx.annotation.ColorRes
 import androidx.recyclerview.widget.LinearLayoutManager
 
 fun View.visibleOrGone(isVisible: Boolean) {
@@ -20,6 +22,10 @@ fun View.visible() {
 }
 
 fun LinearLayoutManager.isAtTop() = findFirstCompletelyVisibleItemPosition() == 0
+
+fun Activity.setStatusBarColor(@ColorRes color: Int) {
+    this.window.statusBarColor = getColor(color)
+}
 
 
 
