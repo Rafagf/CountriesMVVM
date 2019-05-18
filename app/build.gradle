@@ -90,6 +90,7 @@ dependencies {
 
     testImplementation 'junit:junit:4.12'
 
-    compile project(path: ':listofcountries')
-    compile project(path: ':core')
+    implementation project(path: ':detailedcountry')
+    implementation project(path: ':listofcountries')
+    implementation project(path: ':core')
 }
