@@ -18,6 +18,24 @@ class CountryListViewModel @Inject constructor(
     val liveData = MutableLiveData<Model>(Model.Empty)
     private val compositeDisposable = CompositeDisposable()
 
+    sealed class Event {
+        data class CountriesFetched(val payload: List<Country>) : Event()
+        data class CountriesFiltered(val query: String) : Event()
+        data class CountrySelected(val name: String) : Event()
+    }
+
+    sealed class Model {
+        object Empty : Model()
+        object Error : Model()
+        object Loading : Model()
+        data class Content(
+            val baseCountries: List<CountryListModel>,
+            val countriesToDisplay: List<CountryListModel>
+        ) : Model()
+
+        data class CountrySelected(val countryLiveDataEvent: LiveDataEvent<String>) : Model()
+    }
+
     fun start() {
         compositeDisposable.add(
             useCase.getCountries()
@@ -64,31 +82,16 @@ class CountryListViewModel @Inject constructor(
         }
     }
 
+    fun onCountrySelected(name: String) {
+        liveData.postValue(createNextModel(Event.CountrySelected(name)))
+    }
+
+    fun onCountriesFiltered(query: String) {
+        liveData.postValue(createNextModel(Event.CountriesFiltered(query)))
+    }
+
     override fun onCleared() {
         compositeDisposable.clear()
         super.onCleared()
-    }
-
-    fun onCountrySelected(name: String) {
-        val model = createNextModel(Event.CountrySelected(name))
-        liveData.postValue(model)
-    }
-
-    sealed class Event {
-        data class CountriesFetched(val payload: List<Country>) : Event()
-        data class CountriesFiltered(val query: String) : Event()
-        data class CountrySelected(val name: String) : Event()
-    }
-
-    sealed class Model {
-        object Empty : Model()
-        object Error : Model()
-        object Loading : Model()
-        data class Content(
-            val baseCountries: List<CountryListModel>,
-            val countriesToDisplay: List<CountryListModel>
-        ) : Model()
-
-        data class CountrySelected(val countryLiveDataEvent: LiveDataEvent<String>) : Model()
     }
 }

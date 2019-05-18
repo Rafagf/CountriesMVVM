@@ -92,12 +92,12 @@ class CountryListActivity : DaggerAppCompatActivity() {
         searchView.run {
             setOnQueryTextListener(object : MaterialSearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String): Boolean {
-                    viewModel.onCountrySelected(query)
+                    viewModel.onCountriesFiltered(query)
                     return false
                 }
 
                 override fun onQueryTextChange(query: String): Boolean {
-                    viewModel.onCountrySelected(query)
+                    viewModel.onCountriesFiltered(query)
                     return false
                 }
             })
