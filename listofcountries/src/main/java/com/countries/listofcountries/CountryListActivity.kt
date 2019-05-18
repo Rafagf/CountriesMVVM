@@ -51,7 +51,11 @@ class CountryListActivity : DaggerAppCompatActivity() {
                         notifyDataSetChanged()
                     }
                 }
+            }
+        })
 
+        viewModel.actionsLiveData.observe(this, Observer {
+            when (it) {
                 is CountryListViewModel.Model.CountrySelected -> {
                     it.countryLiveDataEvent.consume { countryName ->
                         navigator.countryDetailedNavigator.open(this, countryName)

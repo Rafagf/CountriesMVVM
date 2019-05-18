@@ -13,9 +13,10 @@ import javax.inject.Inject
 class CountryListViewModel @Inject constructor(
     private val useCase: CountryListUseCase,
     private val mapper: CountryListModelMapper
-    ) : ViewModel() {
+) : ViewModel() {
 
     val liveData = MutableLiveData<Model>(Model.Empty)
+    val actionsLiveData = MutableLiveData<Model>(Model.Empty)
     private val compositeDisposable = CompositeDisposable()
 
     sealed class Event {
@@ -57,20 +58,12 @@ class CountryListViewModel @Inject constructor(
 
     private fun createNextModel(event: Event): Model {
         return when (event) {
-            is Event.CountriesFetched -> getContentModel(event, liveData.value!!)
-            is Event.CountriesFiltered -> getContentModel(event, liveData.value!!)
-            is Event.CountrySelected -> getContentModel(event, liveData.value!!)
-        }
-    }
-
-    private fun getContentModel(event: Event, currentState: Model): Model {
-        return when (event) {
             is Event.CountriesFetched -> {
                 val countries = mapper.map(event.payload)
                 Model.Content(baseCountries = countries, countriesToDisplay = countries)
             }
             is Event.CountriesFiltered -> {
-                val countries = (currentState as Model.Content).baseCountries
+                val countries = (liveData.value as Model.Content).baseCountries
                 val filtered = countries.filter {
                     it.name.toLowerCase().startsWith(event.query.toLowerCase())
                 }
@@ -83,7 +76,7 @@ class CountryListViewModel @Inject constructor(
     }
 
     fun onCountrySelected(name: String) {
-        liveData.postValue(createNextModel(Event.CountrySelected(name)))
+        actionsLiveData.postValue(createNextModel(Event.CountrySelected(name)))
     }
 
     fun onCountriesFiltered(query: String) {
