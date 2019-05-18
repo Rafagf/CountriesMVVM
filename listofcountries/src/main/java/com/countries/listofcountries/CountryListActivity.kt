@@ -53,16 +53,6 @@ class CountryListActivity : DaggerAppCompatActivity() {
                 }
             }
         })
-
-        viewModel.actionsLiveData.observe(this, Observer {
-            when (it) {
-                is CountryListViewModel.Model.CountrySelected -> {
-                    it.countryLiveDataEvent.consume { countryName ->
-                        navigator.countryDetailedNavigator.open(this, countryName)
-                    }
-                }
-            }
-        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -79,7 +69,7 @@ class CountryListActivity : DaggerAppCompatActivity() {
 
     private fun setCountryList() {
         countriesRecyclerView.adapter = CountryListAdapter(onClick = {
-            viewModel.onCountrySelected(it)
+            navigator.countryDetailedNavigator.open(this, it)
         })
 
         countriesRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
@@ -123,7 +113,7 @@ class CountryListActivity : DaggerAppCompatActivity() {
 
     private fun setScrollToTopListener() {
         scrollToTop.setOnClickListener {
-            //todo implement
+
         }
     }
 }

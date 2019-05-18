@@ -2,7 +2,6 @@ package com.countries.listofcountries
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.countries.core.LiveDataEvent
 import com.countries.core.models.Country
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -16,13 +15,11 @@ class CountryListViewModel @Inject constructor(
 ) : ViewModel() {
 
     val liveData = MutableLiveData<Model>(Model.Empty)
-    val actionsLiveData = MutableLiveData<Model>(Model.Empty)
     private val compositeDisposable = CompositeDisposable()
 
     sealed class Event {
         data class CountriesFetched(val payload: List<Country>) : Event()
         data class CountriesFiltered(val query: String) : Event()
-        data class CountrySelected(val name: String) : Event()
     }
 
     sealed class Model {
@@ -33,8 +30,6 @@ class CountryListViewModel @Inject constructor(
             val baseCountries: List<CountryListModel>,
             val countriesToDisplay: List<CountryListModel>
         ) : Model()
-
-        data class CountrySelected(val countryLiveDataEvent: LiveDataEvent<String>) : Model()
     }
 
     fun start() {
@@ -43,7 +38,7 @@ class CountryListViewModel @Inject constructor(
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .map {
-                    createNextModel(Event.CountriesFetched(it))
+                    createNextModel(Event.CountriesFetched(it), liveData.value!!)
                 }
                 .toObservable()
                 .startWith(Model.Loading)
@@ -56,31 +51,36 @@ class CountryListViewModel @Inject constructor(
         )
     }
 
-    private fun createNextModel(event: Event): Model {
+    private fun createNextModel(event: Event, currentState: Model): Model {
         return when (event) {
-            is Event.CountriesFetched -> {
-                val countries = mapper.map(event.payload)
-                Model.Content(baseCountries = countries, countriesToDisplay = countries)
-            }
-            is Event.CountriesFiltered -> {
-                val countries = (liveData.value as Model.Content).baseCountries
+            is Event.CountriesFetched -> getCountriesFetchedModel(event)
+            is Event.CountriesFiltered -> getCountriesFilteredModel(currentState, event)
+        }
+    }
+
+    private fun getCountriesFilteredModel(
+        currentState: Model,
+        event: Event.CountriesFiltered
+    ): Model {
+        return when (currentState) {
+            is Model.Content -> {
+                val countries = currentState.baseCountries
                 val filtered = countries.filter {
                     it.name.toLowerCase().startsWith(event.query.toLowerCase())
                 }
                 Model.Content(baseCountries = countries, countriesToDisplay = filtered)
             }
-            is Event.CountrySelected -> {
-                Model.CountrySelected(LiveDataEvent(event.name))
-            }
+            else -> Model.Empty
         }
     }
 
-    fun onCountrySelected(name: String) {
-        actionsLiveData.postValue(createNextModel(Event.CountrySelected(name)))
+    private fun getCountriesFetchedModel(event: Event.CountriesFetched): Model.Content {
+        val countries = mapper.map(event.payload)
+        return Model.Content(baseCountries = countries, countriesToDisplay = countries)
     }
 
     fun onCountriesFiltered(query: String) {
-        liveData.postValue(createNextModel(Event.CountriesFiltered(query)))
+        liveData.postValue(createNextModel(Event.CountriesFiltered(query), liveData.value!!))
     }
 
     override fun onCleared() {
