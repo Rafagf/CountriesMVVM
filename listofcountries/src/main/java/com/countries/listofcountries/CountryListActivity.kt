@@ -90,11 +90,11 @@ class CountryListActivity : DaggerAppCompatActivity() {
 
             setOnSearchViewListener(object : MaterialSearchView.SearchViewListener {
                 override fun onSearchViewShown() {
-                    //todo implement
+                    //todo implement grey
                 }
 
                 override fun onSearchViewClosed() {
-                    //todo implement
+                    //todo implement primary
                 }
             })
         }
@@ -110,6 +110,7 @@ class CountryListActivity : DaggerAppCompatActivity() {
 
         scrollToTop.setOnClickListener {
             (countriesRecyclerView.layoutManager as LinearLayoutManager).scrollToPosition(0)
+            appBarLayout.setExpanded(true)
         }
     }
 }
