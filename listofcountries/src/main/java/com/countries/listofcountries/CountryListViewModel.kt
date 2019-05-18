@@ -13,7 +13,7 @@ import javax.inject.Inject
 class CountryListViewModel @Inject constructor(
     private val useCase: CountryListUseCase,
     private val mapper: CountryListModelMapper
-) : ViewModel() {
+    ) : ViewModel() {
 
     val liveData = MutableLiveData<Model>(Model.Empty)
     private val compositeDisposable = CompositeDisposable()

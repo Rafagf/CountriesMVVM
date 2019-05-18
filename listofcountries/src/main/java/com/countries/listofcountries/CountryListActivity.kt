@@ -3,12 +3,12 @@ package com.countries.listofcountries
 import android.os.Bundle
 import android.view.Menu
 import android.view.View
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.countries.core.AppNavigator
 import com.miguelcatalan.materialsearchview.MaterialSearchView
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_country_list.*
@@ -18,6 +18,9 @@ class CountryListActivity : DaggerAppCompatActivity() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    @Inject
+    lateinit var navigator: AppNavigator
 
     lateinit var viewModel: CountryListViewModel
 
@@ -50,8 +53,8 @@ class CountryListActivity : DaggerAppCompatActivity() {
                 }
 
                 is CountryListViewModel.Model.CountrySelected -> {
-                    it.countryLiveDataEvent.consume {
-                        Toast.makeText(this, "Country selected is $it", Toast.LENGTH_LONG).show()
+                    it.countryLiveDataEvent.consume { countryName ->
+                        navigator.countryDetailedNavigator.open(this, countryName)
                     }
                 }
             }

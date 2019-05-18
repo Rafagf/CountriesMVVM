@@ -11,7 +11,11 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(
-    modules = [ApplicationModule::class, ActivityBindingModule::class, NetworkModule::class, AndroidSupportInjectionModule::class]
+    modules = [ApplicationModule::class,
+        ActivityBindingModule::class,
+        AppNavigatorModule::class,
+        NetworkModule::class,
+        AndroidSupportInjectionModule::class]
 )
 interface ApplicationComponent : AndroidInjector<CountriesApplication> {
 
