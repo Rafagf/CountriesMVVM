@@ -2,6 +2,7 @@ package com.countries.listofcountries
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.countries.core.LiveDataEvent
 import com.countries.core.models.Country
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -40,10 +41,11 @@ class CountryListViewModel @Inject constructor(
         return when (event) {
             is Event.CountriesFetched -> getContentModel(event, liveData.value!!)
             is Event.CountriesFiltered -> getContentModel(event, liveData.value!!)
+            is Event.CountrySelected -> getContentModel(event, liveData.value!!)
         }
     }
 
-    private fun getContentModel(event: Event, currentState: Model): Model.Content {
+    private fun getContentModel(event: Event, currentState: Model): Model {
         return when (event) {
             is Event.CountriesFetched -> {
                 val countries = mapper.map(event.payload)
@@ -56,6 +58,9 @@ class CountryListViewModel @Inject constructor(
                 }
                 Model.Content(baseCountries = countries, countriesToDisplay = filtered)
             }
+            is Event.CountrySelected -> {
+                Model.CountrySelected(LiveDataEvent(event.name))
+            }
         }
     }
 
@@ -64,14 +69,15 @@ class CountryListViewModel @Inject constructor(
         super.onCleared()
     }
 
-    fun onSearchQueryChanged(query: String) {
-        val model = createNextModel(Event.CountriesFiltered(query))
+    fun onCountrySelected(name: String) {
+        val model = createNextModel(Event.CountrySelected(name))
         liveData.postValue(model)
     }
 
     sealed class Event {
         data class CountriesFetched(val payload: List<Country>) : Event()
         data class CountriesFiltered(val query: String) : Event()
+        data class CountrySelected(val name: String) : Event()
     }
 
     sealed class Model {
@@ -82,5 +88,7 @@ class CountryListViewModel @Inject constructor(
             val baseCountries: List<CountryListModel>,
             val countriesToDisplay: List<CountryListModel>
         ) : Model()
+
+        data class CountrySelected(val countryLiveDataEvent: LiveDataEvent<String>) : Model()
     }
 }

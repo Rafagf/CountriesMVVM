@@ -3,6 +3,7 @@ package com.countries.listofcountries
 import android.os.Bundle
 import android.view.Menu
 import android.view.View
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
@@ -47,6 +48,12 @@ class CountryListActivity : DaggerAppCompatActivity() {
                         notifyDataSetChanged()
                     }
                 }
+
+                is CountryListViewModel.Model.CountrySelected -> {
+                    it.countryLiveDataEvent.consume {
+                        Toast.makeText(this, "Country selected is $it", Toast.LENGTH_LONG).show()
+                    }
+                }
             }
         })
     }
@@ -64,7 +71,10 @@ class CountryListActivity : DaggerAppCompatActivity() {
     }
 
     private fun setCountryList() {
-        countriesRecyclerView.adapter = CountryListAdapter()
+        countriesRecyclerView.adapter = CountryListAdapter(onClick = {
+            viewModel.onCountrySelected(it)
+        })
+
         countriesRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 //todo should this go to the view model?
@@ -82,12 +92,12 @@ class CountryListActivity : DaggerAppCompatActivity() {
         searchView.run {
             setOnQueryTextListener(object : MaterialSearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String): Boolean {
-                    viewModel.onSearchQueryChanged(query)
+                    viewModel.onCountrySelected(query)
                     return false
                 }
 
                 override fun onQueryTextChange(query: String): Boolean {
-                    viewModel.onSearchQueryChanged(query)
+                    viewModel.onCountrySelected(query)
                     return false
                 }
             })
