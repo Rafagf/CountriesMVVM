@@ -7,10 +7,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.countries.core.AppNavigator
-import com.countries.core.isAtTop
-import com.countries.core.setStatusBarColor
-import com.countries.core.visibleOrGone
+import com.countries.core.*
 import com.miguelcatalan.materialsearchview.MaterialSearchView
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_country_list.*
@@ -41,12 +38,21 @@ class CountryListActivity : DaggerAppCompatActivity() {
                     //todo implement
                 }
 
-                is Error -> {
-                    //todo implement
+                is CountryListViewModel.Model.Error -> {
+                    errorView.visible()
+                    countriesRecyclerView.gone()
+                    scrollToTop.gone()
+                    errorView.onClick {
+                        viewModel.start()
+                    }
                 }
 
                 is CountryListViewModel.Model.Content -> {
                     //todo enable search button (should be disabled until this point)
+                    errorView.gone()
+                    countriesRecyclerView.visible()
+                    scrollToTop.visible()
+
                     (countriesRecyclerView.adapter as CountryListAdapter).run {
                         list.clear()
                         list.addAll(it.countriesToDisplay)

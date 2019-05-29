@@ -54,6 +54,7 @@
             tools:listitem="@layout/country_card"
             android:orientation="vertical"
             android:scrollbars="vertical"
+            android:visibility="gone"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -66,4 +67,10 @@
             android:visibility="gone"
             app:backgroundTint="@color/plain_white"
             app:fabSize="mini"/>
+
+    <com.countries.core.views.ErrorView
+            android:id="@+id/errorView"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
