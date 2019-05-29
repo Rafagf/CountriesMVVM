@@ -35,10 +35,17 @@ class CountryListActivity : DaggerAppCompatActivity() {
         viewModel.liveData.observe(this, Observer {
             when (it) {
                 is CountryListViewModel.Model.Loading -> {
-                    //todo implement
+                    searchView.enabled(false)
+                    loadingView.visible()
+                    errorView.gone()
+                    countriesRecyclerView.gone()
+                    scrollToTop.gone()
+
                 }
 
                 is CountryListViewModel.Model.Error -> {
+                    searchView.enabled(false)
+                    loadingView.gone()
                     errorView.visible()
                     countriesRecyclerView.gone()
                     scrollToTop.gone()
@@ -48,7 +55,8 @@ class CountryListActivity : DaggerAppCompatActivity() {
                 }
 
                 is CountryListViewModel.Model.Content -> {
-                    //todo enable search button (should be disabled until this point)
+                    searchView.enabled(true)
+                    loadingView.gone()
                     errorView.gone()
                     countriesRecyclerView.visible()
                     scrollToTop.visible()
@@ -83,6 +91,7 @@ class CountryListActivity : DaggerAppCompatActivity() {
 
     private fun setSearchView() {
         searchView.run {
+            searchView.enabled(false)
             setOnQueryTextListener(object : MaterialSearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String): Boolean {
                     viewModel.onCountriesFiltered(query)
