@@ -14,4 +14,17 @@
         <item name="android:textColorPrimary">@color/plain_white</item>
     </style>
 
+    <style name="ErrorTitle">
+        <!--TODO colors should use attributes-->
+        <item name="android:textColor">@color/color_primary_dark</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="ErrorBody">
+        <!--TODO colors should use attributes-->
+        <item name="android:textColor">@color/color_primary_dark</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
 </resources>
