@@ -1,11 +1,12 @@
 package com.countries.core.mappers
 
 import com.countries.core.models.Country
+import com.countries.core.models.CountryApi
 import javax.inject.Inject
 
 class CountryApiMapper @Inject constructor() {
 
-    fun toCountry(country: Country): Country {
+    fun toCountry(country: CountryApi): Country {
         return country.run {
             Country(
                 name = name,
@@ -24,15 +25,15 @@ class CountryApiMapper @Inject constructor() {
         }
     }
 
-    fun toCountries(countries: List<Country>): List<Country> {
+    fun toCountries(countries: List<CountryApi>): List<Country> {
         return countries.map {
             toCountry(it)
         }
     }
 
-    fun toCountryApi(country: Country): Country {
+    fun toCountryApi(country: Country): CountryApi {
         return country.run {
-            Country(
+            CountryApi(
                 name = name,
                 nativeName = nativeName,
                 alpha2Code = alpha2Code,
@@ -50,7 +51,7 @@ class CountryApiMapper @Inject constructor() {
 
     }
 
-    fun toCountriesApi(countries: List<Country>): List<Country> {
+    fun toCountriesApi(countries: List<Country>): List<CountryApi> {
         return countries.map {
             toCountryApi(it)
         }

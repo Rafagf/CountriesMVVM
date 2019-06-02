@@ -1,9 +1,11 @@
 package com.countries.core.models
 
+import com.squareup.moshi.Json
+
 /**
  * Created by Rafa on 05/04/2018.
  */
-data class Country(
+data class CountryApi(
     val name: String,
     val nativeName: String,
     val alpha2Code: String,
@@ -13,7 +15,7 @@ data class Country(
     val area: String?,
     val demonym: String?,
     val latlng: List<Double>,
-    val continent: String?,
-    val region: String?,
-    val borderCountryAlphaList: List<String> = listOf()
+    @field:Json(name = "region") val continent: String?,
+    @field:Json(name = "subregion") val region: String?,
+    @field:Json(name = "borders") val borderCountryAlphaList: List<String> = listOf()
 )

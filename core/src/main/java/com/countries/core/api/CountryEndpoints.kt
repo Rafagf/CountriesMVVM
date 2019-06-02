@@ -1,6 +1,6 @@
 package com.countries.core.api
 
-import com.countries.core.models.Country
+import com.countries.core.models.CountryApi
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -11,11 +11,11 @@ import retrofit2.http.Path
 interface CountryEndpoints {
 
     @GET("name/{country}")
-    fun getCountryByName(@Path("country") name: String): Single<List<Country>>
+    fun getCountryByName(@Path("country") name: String): Single<List<CountryApi>>
 
     @GET("alpha/{countryAlpha}")
-    fun getCountryByAlpha3(@Path("countryAlpha") alpha: String): Single<Country>
+    fun getCountryByAlpha3(@Path("countryAlpha") alpha: String): Single<CountryApi>
 
     @GET("all")
-    fun getCountries(): Single<List<Country>>
+    fun getCountries(): Single<List<CountryApi>>
 }
