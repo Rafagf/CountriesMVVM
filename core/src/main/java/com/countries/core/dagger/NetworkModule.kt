@@ -1,6 +1,6 @@
 package com.countries.core.dagger
 
-import com.countries.core.api.CountryApi
+import com.countries.core.api.CountryEndpoints
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -31,5 +31,5 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideCountryApi(): CountryApi = retrofit.create(CountryApi::class.java)
+    fun provideCountryApi(): CountryEndpoints = retrofit.create(CountryEndpoints::class.java)
 }
