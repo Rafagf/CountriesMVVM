@@ -3,6 +3,7 @@ package com.countries.dagger
 import android.app.Application
 import com.countries.CountriesApplication
 import com.countries.core.dagger.NetworkModule
+import com.countries.core.dagger.PersistencyModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
@@ -15,6 +16,7 @@ import javax.inject.Singleton
         ActivityBindingModule::class,
         AppNavigatorModule::class,
         NetworkModule::class,
+        PersistencyModule::class,
         AndroidSupportInjectionModule::class]
 )
 interface ApplicationComponent : AndroidInjector<CountriesApplication> {

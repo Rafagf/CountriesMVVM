@@ -4,8 +4,9 @@ import com.countries.core.db.CountryDao
 import com.countries.core.mappers.CountryDBMapper
 import com.countries.core.models.Country
 import io.reactivex.Single
+import javax.inject.Inject
 
-class CountriesLocalDataSource(
+class CountriesLocalDataSource @Inject constructor(
     private val countryDao: CountryDao,
     private val mapper: CountryDBMapper
 ) : CountriesDataSource {

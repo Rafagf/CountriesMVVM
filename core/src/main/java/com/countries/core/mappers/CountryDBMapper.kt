@@ -2,8 +2,9 @@ package com.countries.core.mappers
 
 import com.countries.core.models.Country
 import com.countries.core.models.CountryDB
+import javax.inject.Inject
 
-class CountryDBMapper {
+class CountryDBMapper @Inject constructor(){
 
     fun toCountry(country: CountryDB): Country {
         return country.run {

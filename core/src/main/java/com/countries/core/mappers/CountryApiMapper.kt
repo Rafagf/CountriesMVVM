@@ -1,8 +1,9 @@
 package com.countries.core.mappers
 
 import com.countries.core.models.Country
+import javax.inject.Inject
 
-class CountryApiMapper {
+class CountryApiMapper @Inject constructor() {
 
     fun toCountry(country: Country): Country {
         return country.run {

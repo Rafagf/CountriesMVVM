@@ -13,10 +13,13 @@ import javax.inject.Singleton
 /**
  * Created by Rafa on 05/04/2018.
  */
-private const val API_BASE_URL = "https://restcountries.eu/rest/v1/"
 
 @Module
 class NetworkModule {
+
+    private companion object {
+        private const val API_BASE_URL = "https://restcountries.eu/rest/v1/"
+    }
 
     private val httpClientBuilder =
         OkHttpClient.Builder().addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
