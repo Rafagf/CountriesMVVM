@@ -2,6 +2,7 @@ package com.countries.core.mappers
 
 import com.countries.core.models.Country
 import com.countries.core.models.CountryApi
+import com.countries.core.models.LatLng
 import javax.inject.Inject
 
 class CountryApiMapper @Inject constructor() {
@@ -17,13 +18,21 @@ class CountryApiMapper @Inject constructor() {
                 population = population,
                 area = area,
                 demonym = demonym,
-                latlng = latlng,
+                latlng = getLatLng(latlng),
                 continent = continent,
                 region = region,
                 borderCountryAlphaList = borderCountryAlphaList
             )
         }
     }
+
+    private fun getLatLng(latlng: List<Double>): LatLng {
+        return when {
+            latlng.isEmpty() -> LatLng(0.0, 0.0)
+            else -> LatLng(latlng[0], latlng[1])
+        }
+    }
+
 
     fun toCountries(countries: List<CountryApi>): List<Country> {
         return countries.map {
@@ -42,13 +51,12 @@ class CountryApiMapper @Inject constructor() {
                 population = population,
                 area = area,
                 demonym = demonym,
-                latlng = latlng,
+                latlng = listOf(latlng.lat, latlng.lng),
                 continent = continent,
                 region = region,
                 borderCountryAlphaList = borderCountryAlphaList
             )
         }
-
     }
 
     fun toCountriesApi(countries: List<Country>): List<CountryApi> {

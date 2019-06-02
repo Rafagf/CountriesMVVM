@@ -12,7 +12,7 @@ data class Country(
     val population: String? = null,
     val area: String?,
     val demonym: String?,
-    val latlng: List<Double>,
+    val latlng: LatLng,
     val continent: String?,
     val region: String?,
     val borderCountryAlphaList: List<String> = listOf()

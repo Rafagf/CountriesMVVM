@@ -17,7 +17,7 @@ class CountryDBMapper @Inject constructor(){
                 population = population,
                 area = area,
                 demonym = demonym,
-                latlng = emptyList(),
+                latlng = latlng,
                 continent = continent,
                 region = region,
                 borderCountryAlphaList = emptyList()
@@ -42,10 +42,10 @@ class CountryDBMapper @Inject constructor(){
                 population = population,
                 area = area,
                 demonym = demonym,
-//                latlng = latlng,
+                latlng = latlng,
                 continent = continent,
-                region = region
-//                borderCountryAlphaList = borderCountryAlphaList
+                region = region,
+                borderCountryAlphaList = borderCountryAlphaList
             )
         }
 

@@ -2,6 +2,9 @@ package com.countries.core.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
+import com.countries.core.db.BordersConverter
+import com.countries.core.db.LatLngConverter
 
 
 @Entity
@@ -15,8 +18,10 @@ data class CountryDB(
     val population: String? = null,
     val area: String?,
     val demonym: String?,
-//    val latlng: List<Double>,
+    @TypeConverters(LatLngConverter::class)
+    val latlng: LatLng,
     val continent: String?,
-    val region: String?
-//    val borderCountryAlphaList: List<String> = listOf()
+    val region: String?,
+    @TypeConverters(BordersConverter::class)
+    val borderCountryAlphaList: List<String> = listOf()
 )
