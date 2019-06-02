@@ -69,6 +69,8 @@ class CountryListActivity : DaggerAppCompatActivity() {
                 }
             }
         })
+
+        viewModel.start()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -76,11 +78,6 @@ class CountryListActivity : DaggerAppCompatActivity() {
         val item = menu.findItem(R.id.action_search)
         searchView.setMenuItem(item)
         return true
-    }
-
-    override fun onStart() {
-        super.onStart()
-        viewModel.start()
     }
 
     private fun setCountryList() {
