@@ -21,7 +21,7 @@ class CountriesRepository @Inject constructor(
     }
 
     fun getCountryByAlpha3(alpha3: String): Single<Country> {
-        return localDataSource.getCountryByName(alpha3)
-            .switchIfEmpty(remoteDataSource.getCountryByName(alpha3).toMaybe()).toSingle()
+        return localDataSource.getCountryByAlpha3(alpha3)
+            .switchIfEmpty(remoteDataSource.getCountryByAlpha3(alpha3).toMaybe()).toSingle()
     }
 }
