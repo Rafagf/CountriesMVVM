@@ -35,7 +35,6 @@ class CountryListViewModel @Inject constructor(
     fun start() {
         compositeDisposable.add(
             useCase.getCountries()
-                .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .map {
                     createNextModel(Event.CountriesFetched(it), liveData.value!!)
