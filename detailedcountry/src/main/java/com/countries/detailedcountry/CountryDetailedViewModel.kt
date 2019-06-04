@@ -5,8 +5,9 @@ import androidx.lifecycle.ViewModel
 import com.countries.core.models.Country
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
-class CountryDetailedViewModel(
+class CountryDetailedViewModel @Inject constructor(
     private val useCase: CountryDetailedUseCase,
     private val mapper: CountryDetailedModelMapper
 ) : ViewModel() {
