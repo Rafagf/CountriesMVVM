@@ -3,10 +3,10 @@
     <string name="refresh">Refresh</string>
     <string name="error_body">Are you connected to the internet?</string>
     <string name="error_header">Oops! Something went wrong</string>
-    <string name="population">Population:</string>
-    <string name="continent">Continent:</string>
-    <string name="area">Area:</string>
-    <string name="demonym">Demonym:</string>
-    <string name="native_name">Native name:</string>
+    <string name="population">Population</string>
+    <string name="continent">Continent</string>
+    <string name="area">Area</string>
+    <string name="demonym">Demonym</string>
+    <string name="native_name">Native name</string>
     <string name="border_countries">Border countries</string>
 </resources>

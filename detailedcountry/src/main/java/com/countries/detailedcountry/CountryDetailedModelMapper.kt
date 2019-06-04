@@ -48,21 +48,21 @@ class CountryDetailedModelMapper @Inject constructor(private val resources: Reso
     }
 
     private fun getDemonym(demonym: String?) = when {
-        demonym != null && demonym.isNotEmpty() -> "${resources.getText(R.string.demonym)} $demonym"
-        else -> "${resources.getText(R.string.demonym)}-"
+        demonym != null && demonym.isNotEmpty() -> "${resources.getText(R.string.demonym)}: $demonym"
+        else -> "${resources.getText(R.string.demonym)}: -"
 
     }
 
-    private fun getNativeName(nativeName: String) = "${resources.getText(R.string.native_name)} $nativeName"
+    private fun getNativeName(nativeName: String) = "${resources.getText(R.string.native_name)}: $nativeName"
 
     private fun getArea(area: String?) = when {
-        area != null && area.isNotEmpty() -> "${resources.getText(R.string.area)} ${area.toFloat().toAreaFormat()}"
-        else -> "${resources.getText(R.string.area)}0 m²"
+        area != null && area.isNotEmpty() -> "${resources.getText(R.string.area)}: ${area.toFloat().toAreaFormat()}"
+        else -> "${resources.getText(R.string.area)}: 0 m²"
     }
 
     private fun getPopulation(population: String?) = when {
-        population != null && population.isNotEmpty() -> ("${resources.getText(R.string.population)} ${population.toLong().toPopulationFormat()}")
-        else -> "${resources.getText(R.string.population)}0"
+        population != null && population.isNotEmpty() -> ("${resources.getText(R.string.population)}: ${population.toLong().toPopulationFormat()}")
+        else -> "${resources.getText(R.string.population)}: 0"
     }
 }
 
