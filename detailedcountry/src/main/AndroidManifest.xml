@@ -5,7 +5,8 @@
     <application>
         <activity
                 android:name=".CountryDetailedActivity"
-                android:theme="@style/AppTheme.NoActionBar">
+                android:theme="@style/AppTheme.NoActionBar"
+                android:parentActivityName="com.countries.listofcountries.CountryListActivity">
         </activity>
     </application>
 

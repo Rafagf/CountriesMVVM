@@ -27,7 +27,7 @@ class CountryDetailedActivity : DaggerAppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_country_detailed)
         overridePendingTransition(R.anim.slide_in_up, R.anim.stay)
-        setSupportActionBar(toolbar)
+        setToolbar()
         setErrorView()
 
         viewModel = ViewModelProviders.of(this, viewModelFactory)[CountryDetailedViewModel::class.java]
@@ -69,6 +69,13 @@ class CountryDetailedActivity : DaggerAppCompatActivity() {
                 }
             }
         })
+    }
+
+    private fun setToolbar() {
+        setSupportActionBar(toolbar)
+        val actionBar = supportActionBar
+        actionBar?.setDisplayHomeAsUpEnabled(true)
+        actionBar?.setDisplayShowHomeEnabled(true)
     }
 
     private fun setErrorView() {
