@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/detailedViewRoot"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -20,111 +19,27 @@
             app:layout_constraintTop_toTopOf="parent"
             app:theme="@style/CountriesToolBar"/>
 
-    <ImageView
-            android:id="@+id/flagImageView"
-            android:layout_width="150dp"
-            android:layout_height="100dp"
-            android:layout_marginBottom="16dp"
-            android:layout_marginTop="16dp"
-            android:scaleType="fitXY"
-            app:layout_constraintTop_toBottomOf="@id/toolbar"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:background="@color/plain_grey"/>
-
-
-    <TextView
-            android:id="@+id/capitalTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:textColor="@android:color/black"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/continentTextView"
-            app:layout_constraintStart_toEndOf="@+id/flagImageView"
-            app:layout_constraintTop_toTopOf="@+id/flagImageView"
-            app:layout_constraintVertical_chainStyle="spread"
-            tools:text="Madrid"/>
-
-    <TextView
-            android:id="@+id/continentTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:textColor="@android:color/black"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/regionTextView"
-            app:layout_constraintStart_toStartOf="@+id/capitalTextView"
-            app:layout_constraintTop_toBottomOf="@+id/capitalTextView"
-            tools:text="Europe"/>
-
-    <TextView
-            android:id="@+id/regionTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:textColor="@android:color/black"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@+id/flagImageView"
-            app:layout_constraintStart_toEndOf="@+id/flagImageView"
-            app:layout_constraintStart_toStartOf="@+id/continentTextView"
-            app:layout_constraintTop_toBottomOf="@+id/continentTextView"
-            tools:text="Southern Europe"/>
-
-    <ImageView
-            android:id="@+id/mapView"
+    <include
+            android:layout_height="match_parent"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginTop="28dp"
-            android:background="@color/color_primary_dark"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/flagImageView"
+            android:visibility="gone"
+            android:layout_marginTop="?attr/actionBarSize"
+            layout="@layout/activity_country_content_state"
     />
 
-    <TextView
-            android:id="@+id/populationTextView"
+    <com.countries.core.views.ErrorView
+            android:id="@+id/errorView"
+            android:visibility="gone"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:textColor="@color/plain_black"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mapView"
-            tools:text="Population: "/>
+            android:layout_height="match_parent"/>
 
-
-    <TextView
-            android:id="@+id/areaTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:textColor="@color/plain_black"
-            android:textSize="16sp"
+    <ProgressBar
+            android:id="@+id/loadingView"
+            android:visibility="gone"
+            android:layout_gravity="center"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/populationTextView"
-            tools:text="Area: "/>
-
-    <TextView
-            android:id="@+id/demonymTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:textColor="@color/plain_black"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/areaTextView"
-            tools:text="Demonym: "/>
-
-    <TextView
-            android:id="@+id/nativeNameTextView"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:textColor="@color/plain_black"
-            tools:text="Native name:"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/demonymTextView"
-            android:textSize="16sp"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

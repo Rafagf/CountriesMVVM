@@ -2,7 +2,7 @@ package com.countries.detailedcountry
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.countries.core.models.Country
+import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
@@ -14,10 +14,6 @@ class CountryDetailedViewModel @Inject constructor(
 
     val liveData = MutableLiveData<Model>(Model.Empty)
     private val compositeDisposable = CompositeDisposable()
-
-    sealed class Event {
-        data class CountryFetched(val payload: Country) : Event()
-    }
 
     sealed class Model {
         object Empty : Model()
@@ -33,12 +29,21 @@ class CountryDetailedViewModel @Inject constructor(
             useCase.getCountry(name)
                 .subscribeOn(Schedulers.io())
                 .map {
-                    Model.Content(mapper.map(it))
+                    Model.Content(mapper.map(it)) as Model
                 }
                 .toObservable()
+                .startWith(Model.Loading)
+                .onErrorResumeNext { _: Throwable ->
+                    Observable.just(Model.Error)
+                }
                 .subscribe {
                     liveData.postValue(it)
                 }
         )
+    }
+
+    override fun onCleared() {
+        compositeDisposable.clear()
+        super.onCleared()
     }
 }
