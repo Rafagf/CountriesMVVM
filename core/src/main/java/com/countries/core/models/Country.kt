@@ -1,8 +1,5 @@
 package com.countries.core.models
 
-/**
- * Created by Rafa on 05/04/2018.
- */
 data class Country(
     val name: String,
     val nativeName: String,

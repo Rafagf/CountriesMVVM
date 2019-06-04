@@ -3,7 +3,9 @@
           package="com.countries.detailedcountry">
 
     <application>
-        <activity android:name=".CountryDetailedActivity">
+        <activity
+                android:name=".CountryDetailedActivity"
+                android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>
 
