@@ -30,6 +30,7 @@ class CountryListActivity : DaggerAppCompatActivity() {
         setSearchView()
         setCountryList()
         setScrollToTopButton()
+        setErrorView()
 
         viewModel = ViewModelProviders.of(this, viewModelFactory)[CountryListViewModel::class.java]
         viewModel.liveData.observe(this, Observer {
@@ -49,9 +50,6 @@ class CountryListActivity : DaggerAppCompatActivity() {
                     errorView.visible()
                     countriesRecyclerView.gone()
                     scrollToTop.gone()
-                    errorView.onClick {
-                        viewModel.start()
-                    }
                 }
 
                 is CountryListViewModel.Model.Content -> {
@@ -124,6 +122,12 @@ class CountryListActivity : DaggerAppCompatActivity() {
         scrollToTop.setOnClickListener {
             (countriesRecyclerView.layoutManager as LinearLayoutManager).scrollToPosition(0)
             appBarLayout.setExpanded(true)
+        }
+    }
+
+    private fun setErrorView() {
+        errorView.onClick {
+            viewModel.start()
         }
     }
 }
