@@ -14,8 +14,7 @@ class CountryDetailedNavigatorModule {
     fun provideCountryDetailedNavigator() = object : AppNavigator.CountryDetailedNavigator {
         override fun open(context: Context, name: String) {
             val intent = Intent(context, CountryDetailedActivity::class.java)
-            //todo get name string from activity
-            intent.putExtra("name", name)
+            intent.putExtra(CountryDetailedActivity.COUNTRY_NAME_TAG, name)
             context.startActivity(intent)
         }
     }
