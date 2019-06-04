@@ -6,7 +6,7 @@ data class Country(
     val alpha2Code: String,
     val alpha3Code: String,
     val capital: String?,
-    val population: String? = null,
+    val population: String?,
     val area: String?,
     val demonym: String?,
     val latlng: LatLng,

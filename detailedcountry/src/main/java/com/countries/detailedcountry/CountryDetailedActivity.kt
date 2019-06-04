@@ -5,6 +5,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.countries.core.AppNavigator
+import com.squareup.picasso.Picasso
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_country_detailed.*
 import javax.inject.Inject
@@ -30,7 +31,21 @@ class CountryDetailedActivity : DaggerAppCompatActivity() {
         viewModel.liveData.observe(this, Observer {
             when (it) {
                 is CountryDetailedViewModel.Model.Content -> {
-                    supportActionBar?.title = it.country.name
+                    it.country.run {
+                        supportActionBar?.title = name
+                        continentTextView.text = continent
+                        regionTextView.text = region
+                        capitalTextView.text = capital
+                        populationTextView.text = population
+                        areaTextView.text = area
+                        demonymTextView.text = demonym
+                        nativeNameTextView.text = nativeName
+                    }
+
+                    Picasso.with(this)
+                        .load(it.country.flag)
+                        .placeholder(R.color.plain_grey)
+                        .into(flagImageView)
                 }
             }
         })
