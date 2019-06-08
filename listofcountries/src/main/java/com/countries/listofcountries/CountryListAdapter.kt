@@ -19,7 +19,7 @@ class CountryListAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val country = list[position]
-        (holder as CountryViewHolder).itemView.run {
+        (holder as CountryViewHolder).itemView.apply {
             nameTextView.text = country.name
             continentTextView.text = country.continent
             populationTextView.text = country.population

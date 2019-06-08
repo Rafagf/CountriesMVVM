@@ -51,7 +51,7 @@ class CountryDetailedActivity : DaggerAppCompatActivity() {
                     errorView.gone()
                     contentView.visible()
 
-                    it.country.run {
+                    it.country.apply {
                         supportActionBar?.title = name
                         continentTextView.text = continent
                         regionTextView.text = region
@@ -60,12 +60,22 @@ class CountryDetailedActivity : DaggerAppCompatActivity() {
                         areaTextView.text = area
                         demonymTextView.text = demonym
                         nativeNameTextView.text = nativeName
+
+                        Picasso.with(this@CountryDetailedActivity)
+                            .load(it.country.flag)
+                            .placeholder(R.color.plain_grey)
+                            .into(flagImageView)
                     }
 
-                    Picasso.with(this)
-                        .load(it.country.flag)
-                        .placeholder(R.color.plain_grey)
-                        .into(flagImageView)
+                    it.borders?.apply {
+                        forEach { countryName ->
+                            val borderView = BorderView(this@CountryDetailedActivity)
+                            borderView.bind(countryName) {
+                                navigator.countryDetailedNavigator.open(this@CountryDetailedActivity, countryName)
+                            }
+                            bordersLayout.addView(borderView)
+                        }
+                    }
                 }
             }
         })

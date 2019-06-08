@@ -85,7 +85,7 @@ class CountryListActivity : DaggerAppCompatActivity() {
     }
 
     private fun setSearchView() {
-        searchView.run {
+        searchView.apply {
             searchView.enabled(false)
             setOnQueryTextListener(object : MaterialSearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String): Boolean {
