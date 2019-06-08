@@ -21,7 +21,8 @@ class CountryDetailedModelMapper @Inject constructor(private val resources: Reso
                 area = getArea(area),
                 nativeName = getNativeName(nativeName),
                 demonym = getDemonym(demonym),
-                latLng = latlng
+                latLng = latlng,
+                borderCountryAlphaList = borderCountryAlphaList
             )
         }
     }

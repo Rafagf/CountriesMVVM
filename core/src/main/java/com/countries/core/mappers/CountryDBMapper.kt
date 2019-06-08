@@ -20,7 +20,7 @@ class CountryDBMapper @Inject constructor(){
                 latlng = latlng,
                 continent = continent,
                 region = region,
-                borderCountryAlphaList = emptyList()
+                borderCountryAlphaList = borderCountryAlphaList
             )
         }
     }
