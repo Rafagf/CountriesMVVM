@@ -13,7 +13,10 @@ import org.junit.Test
 import org.junit.rules.TestRule
 
 private const val COUNTRY_NAME = "Spain"
-private val COUNTRY_FIXTURE_1 = CountryFixture.aCountry(name = COUNTRY_NAME)
+private const val COUNTRY_NAME_2 = "Spain"
+private val COUNTRY_FIXTURE = CountryFixture.aCountry(name = COUNTRY_NAME)
+private val COUNTRY_DETAILED_MODEL_FIXTURE = CountryDetailedModelFixture.aCountry(COUNTRY_NAME)
+private val COUNTRY_BORDERS = CountryBordersModel(listOf(COUNTRY_NAME, COUNTRY_NAME_2))
 
 class CountryDetailedViewModelTest {
 
@@ -46,6 +49,74 @@ class CountryDetailedViewModelTest {
         observer.assertValues(
             CountryDetailedViewModel.Model.Empty,
             CountryDetailedViewModel.Model.Loading()
+        )
+    }
+
+    @Test
+    fun `given error when fetching country then emits error model`() {
+        whenever(useCase.getCountry(COUNTRY_NAME)).thenReturn(Single.error(Throwable()))
+
+        viewModel.start(COUNTRY_NAME)
+
+        observer.assertValues(
+            CountryDetailedViewModel.Model.Empty,
+            CountryDetailedViewModel.Model.Loading(),
+            CountryDetailedViewModel.Model.Error
+        )
+    }
+
+    @Test
+    fun `when country fetched then emits country content model`() {
+        whenever(useCase.getCountry(COUNTRY_NAME)).thenReturn(Single.just(COUNTRY_FIXTURE))
+        whenever(mapper.map(COUNTRY_FIXTURE)).thenReturn(COUNTRY_DETAILED_MODEL_FIXTURE)
+
+        viewModel.start(COUNTRY_NAME)
+
+        observer.assertValues(
+            CountryDetailedViewModel.Model.Empty,
+            CountryDetailedViewModel.Model.Loading(),
+            CountryDetailedViewModel.Model.Content(
+                country = COUNTRY_DETAILED_MODEL_FIXTURE
+            )
+        )
+    }
+
+    @Test
+    fun `when borders fetched then emits borders content model`() {
+        whenever(useCase.getCountry(COUNTRY_NAME)).thenReturn(Single.never())
+        whenever(useCase.getBorderCountries(COUNTRY_NAME)).thenReturn(Single.just(COUNTRY_BORDERS))
+
+        viewModel.start(COUNTRY_NAME)
+
+        observer.assertValues(
+            CountryDetailedViewModel.Model.Empty,
+            CountryDetailedViewModel.Model.Loading(),
+            CountryDetailedViewModel.Model.Content(
+                country = null,
+                borders = COUNTRY_BORDERS
+            )
+        )
+    }
+
+    @Test
+    fun `when both borders and country fetched then emits full content state`() {
+        whenever(useCase.getCountry(COUNTRY_NAME)).thenReturn(Single.just(COUNTRY_FIXTURE))
+        whenever(mapper.map(COUNTRY_FIXTURE)).thenReturn(COUNTRY_DETAILED_MODEL_FIXTURE)
+        whenever(useCase.getBorderCountries(COUNTRY_NAME)).thenReturn(Single.just(COUNTRY_BORDERS))
+
+        viewModel.start(COUNTRY_NAME)
+
+        observer.assertValues(
+            CountryDetailedViewModel.Model.Empty,
+            CountryDetailedViewModel.Model.Loading(),
+            CountryDetailedViewModel.Model.Content(
+                country = COUNTRY_DETAILED_MODEL_FIXTURE,
+                borders = null
+            ),
+            CountryDetailedViewModel.Model.Content(
+                country = COUNTRY_DETAILED_MODEL_FIXTURE,
+                borders = COUNTRY_BORDERS
+            )
         )
     }
 

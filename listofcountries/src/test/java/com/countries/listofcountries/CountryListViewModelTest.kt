@@ -2,7 +2,6 @@ package com.countries.listofcountries
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
-import com.countries.detailedcountry.RxImmediateSchedulerRule
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
 import io.reactivex.Single
