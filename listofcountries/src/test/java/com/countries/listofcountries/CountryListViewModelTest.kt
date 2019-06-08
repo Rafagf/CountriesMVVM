@@ -2,6 +2,7 @@ package com.countries.listofcountries
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
+import com.countries.detailedcountry.RxImmediateSchedulerRule
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
 import io.reactivex.Single
@@ -22,6 +23,9 @@ class CountryListViewModelTest {
 
     @get:Rule
     val instantTaskExecutorRule: TestRule = InstantTaskExecutorRule()
+
+    @get:Rule
+    val schedulers = com.countries.detailedcountry.RxImmediateSchedulerRule()
 
     private val useCase = mock<CountryListUseCase>()
     private val mapper = mock<CountryListModelMapper>()

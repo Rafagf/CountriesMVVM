@@ -58,5 +58,14 @@ dependencies {
     //Image loader
     implementation 'com.squareup.picasso:picasso:2.5.2'
 
+
+    //Testing
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0"
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.mockito:mockito-inline:2.13.0'
+    testImplementation 'androidx.arch.core:core-testing:2.0.0'
+    testImplementation 'org.assertj:assertj-core:3.10.0'
+
+
     implementation project(path: ':core')
 }
