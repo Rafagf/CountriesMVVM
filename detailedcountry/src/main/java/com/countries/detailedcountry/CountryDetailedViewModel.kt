@@ -2,6 +2,9 @@ package com.countries.detailedcountry
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.countries.core.models.Country
+import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
@@ -14,51 +17,113 @@ class CountryDetailedViewModel @Inject constructor(
     val liveData = MutableLiveData<Model>(Model.Empty)
     private val compositeDisposable = CompositeDisposable()
 
+    sealed class Event {
+        data class CountryFetched(val payload: Country) : Event()
+        data class BordersFetched(val payload: CountryBordersModel) : Event()
+    }
+
     sealed class Model {
         object Empty : Model()
         object Error : Model()
-        object Loading : Model()
+        data class Loading(val content: Content? = null) : Model()
         data class Content(
-            val country: CountryDetailedModel, val borders: List<String>? = null
+            val country: CountryDetailedModel? = null,
+            val borders: CountryBordersModel? = null
         ) : Model()
     }
 
     fun start(name: String) {
-        getCountry(name)
+        fetchCountry(name)
+        fetchBorders(name)
     }
 
-    private fun getCountry(name: String) {
+    private fun fetchCountry(name: String) {
         compositeDisposable.add(
             useCase.getCountry(name)
                 .subscribeOn(Schedulers.io())
-                .map {
-                    Model.Content(country = mapper.map(it))
+                .observeOn(AndroidSchedulers.mainThread())
+                .map { country ->
+                    createNextModel(
+                        event = Event.CountryFetched(country),
+                        currentState = liveData.value!!
+                    )
                 }
-                .doOnSuccess { getBorders(it) }
                 .toObservable()
-//                .startWith(Model.Loading)
-//                .onErrorResumeNext { _: Throwable ->
-//                    Observable.just(Model.Error)
-//                }
+                .startWith(Model.Loading())
+                .onErrorResumeNext { _: Throwable ->
+                    Observable.just(Model.Error)
+                }
                 .subscribe {
-                    liveData.postValue(it)
+                    liveData.value = it
                 }
         )
     }
 
-    private fun getBorders(payload: Model.Content) {
-        val country = payload.country
+    private fun fetchBorders(name: String) {
         compositeDisposable.add(
-            useCase.getBorderNames(country.borderCountryAlphaList)
+            useCase.getBorderCountries(name)
                 .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .map {
-                    Model.Content(country = country, borders = it)
+                    createNextModel(
+                        event = Event.BordersFetched(it),
+                        currentState = liveData.value!!
+                    )
                 }
                 .toObservable()
                 .subscribe {
-                    liveData.postValue(it)
+                    liveData.value = it
                 }
         )
+    }
+
+    private fun createNextModel(event: Event, currentState: Model): Model {
+        return when (event) {
+            is Event.CountryFetched -> createCountryModel(event, currentState)
+            is Event.BordersFetched -> createBordersModel(event, currentState)
+        }
+    }
+
+    private fun createCountryModel(
+        event: Event.CountryFetched,
+        currentState: Model
+    ): Model {
+        return when (currentState) {
+            is Model.Loading -> {
+                Model.Content(
+                    country = mapper.map(event.payload),
+                    borders = currentState.content?.borders
+                )
+            }
+            is Model.Content -> {
+                Model.Content(
+                    country = mapper.map(event.payload),
+                    borders = currentState.borders
+                )
+            }
+            else -> Model.Empty
+        }
+    }
+
+    private fun createBordersModel(
+        event: Event.BordersFetched,
+        currentState: Model
+    ): Model {
+        return when (currentState) {
+            is Model.Loading -> {
+                Model.Content(
+                    country = currentState.content?.country,
+                    borders = event.payload
+                )
+            }
+            is Model.Content -> {
+                Model.Content(
+                    country = currentState.country,
+                    borders = event.payload
+                )
+            }
+            else -> Model.Empty
+        }
     }
 
     override fun onCleared() {

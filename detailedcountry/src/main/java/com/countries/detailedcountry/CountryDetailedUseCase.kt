@@ -11,7 +11,13 @@ class CountryDetailedUseCase @Inject constructor(
 
     fun getCountry(name: String) = repository.getCountryByName(name)
 
-    fun getBorderNames(bordersAlpha: List<String>): Single<List<String>> {
+    fun getBorderCountries(name: String): Single<CountryBordersModel> {
+        return getCountry(name)
+            .flatMap { getBorderNames(it.borderCountryAlphaList) }
+            .map { CountryBordersModel(it) }
+    }
+
+    private fun getBorderNames(bordersAlpha: List<String>): Single<List<String>> {
         return Observable.fromIterable(bordersAlpha)
             .flatMap { alpha ->
                 repository.getCountryByAlpha3(alpha)

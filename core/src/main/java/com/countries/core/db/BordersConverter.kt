@@ -20,10 +20,12 @@ class BordersConverter {
         @JvmStatic
         fun toList(string: String): List<String> {
             val list = mutableListOf<String>()
-            string.split(",")
-                .forEach {
-                    list.add(it)
-                }
+            if (string.isNotEmpty()) {
+                string.split(",")
+                    .forEach {
+                        list.add(it)
+                    }
+            }
             return list
         }
     }

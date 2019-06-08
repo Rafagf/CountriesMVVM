@@ -21,15 +21,8 @@ class CountryDetailedModelMapper @Inject constructor(private val resources: Reso
                 area = getArea(area),
                 nativeName = getNativeName(nativeName),
                 demonym = getDemonym(demonym),
-                latLng = latlng,
-                borderCountryAlphaList = borderCountryAlphaList
+                latLng = latlng
             )
-        }
-    }
-
-    fun map(countryList: List<Country>): List<CountryDetailedModel> {
-        return countryList.map {
-            map(it)
         }
     }
 

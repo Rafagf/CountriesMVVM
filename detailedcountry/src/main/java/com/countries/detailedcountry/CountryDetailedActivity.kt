@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.countries.core.AppNavigator
 import com.countries.core.gone
 import com.countries.core.visible
+import com.countries.core.visibleOrGone
 import com.squareup.picasso.Picasso
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_country_content_state.*
@@ -51,7 +52,7 @@ class CountryDetailedActivity : DaggerAppCompatActivity() {
                     errorView.gone()
                     contentView.visible()
 
-                    it.country.apply {
+                    it.country?.apply {
                         supportActionBar?.title = name
                         continentTextView.text = continent
                         regionTextView.text = region
@@ -67,8 +68,9 @@ class CountryDetailedActivity : DaggerAppCompatActivity() {
                             .into(flagImageView)
                     }
 
-                    it.borders?.apply {
-                        forEach { countryName ->
+                    it.borders?.let { borders ->
+                        bordersTextView.visibleOrGone(borders.list.isNotEmpty())
+                        borders.list.forEach { countryName ->
                             val borderView = BorderView(this@CountryDetailedActivity)
                             borderView.bind(countryName) {
                                 navigator.countryDetailedNavigator.open(this@CountryDetailedActivity, countryName)

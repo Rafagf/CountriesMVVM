@@ -12,6 +12,5 @@ data class CountryDetailedModel(
     val latLng: LatLng,
     val population: String?,
     val area: String?,
-    val demonym: String?,
-    val borderCountryAlphaList: List<String> = listOf()
+    val demonym: String?
 )

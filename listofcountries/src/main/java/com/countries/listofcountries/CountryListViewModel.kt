@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.countries.core.models.Country
 import io.reactivex.Observable
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
@@ -35,6 +36,7 @@ class CountryListViewModel @Inject constructor(
         compositeDisposable.add(
             useCase.getCountries()
                 .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .map {
                     createNextModel(Event.CountriesFetched(it), liveData.value!!)
                 }
