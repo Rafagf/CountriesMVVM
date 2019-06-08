@@ -8,12 +8,12 @@ class BordersConverter {
         @TypeConverter
         @JvmStatic
         fun toString(list: List<String>): String {
-            val string = ""
+            var string = ""
             list.forEach {
-                string.plus("$it,")
+                string = "$string$it,"
             }
 
-            return string.removePrefix(",")
+            return string.removeSuffix(",")
         }
 
         @TypeConverter
