@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<androidx.core.widget.NestedScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/contentView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <androidx.constraintlayout.widget.ConstraintLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
             android:padding="16dp"
-            android:id="@+id/contentView"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -63,7 +67,7 @@
         <ImageView
                 android:id="@+id/mapView"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="180dp"
                 android:layout_marginTop="28dp"
                 android:background="@color/color_primary_dark"
                 app:layout_constraintStart_toStartOf="parent"
@@ -148,3 +152,4 @@
             </LinearLayout>
         </HorizontalScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
