@@ -7,6 +7,7 @@ import com.nhaarman.mockitokotlin2.whenever
 import io.reactivex.Single
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Before
+import org.junit.ClassRule
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TestRule
@@ -20,11 +21,17 @@ private val COUNTRY_LIST_MODEL_FIXTURE_2 = CountryListModelFixture.aCountry(COUN
 
 class CountryListViewModelTest {
 
+    companion object {
+        @ClassRule
+        @JvmField
+        val schedulers = RxImmediateSchedulerRule()
+    }
+
     @get:Rule
     val instantTaskExecutorRule: TestRule = InstantTaskExecutorRule()
 
     @get:Rule
-    val schedulers = com.countries.detailedcountry.RxImmediateSchedulerRule()
+    val schedulers = RxImmediateSchedulerRule()
 
     private val useCase = mock<CountryListUseCase>()
     private val mapper = mock<CountryListModelMapper>()
@@ -87,7 +94,7 @@ class CountryListViewModelTest {
             countriesToDisplay = listOf(COUNTRY_LIST_MODEL_FIXTURE_1, COUNTRY_LIST_MODEL_FIXTURE_2)
         )
 
-        viewModel.onCountriesFiltered("Spain")
+        viewModel.onCountriesFiltered(COUNTRY_NAME_1)
 
         observer.assertValues(
             CountryListViewModel.Model.Empty,
