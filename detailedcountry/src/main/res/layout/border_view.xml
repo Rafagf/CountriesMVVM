@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
+                android:orientation="vertical" android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/countryTextView"
+                android:textSize="14sp"
+                android:background="@drawable/circle_shape"
+                android:textColor="@color/plain_white"
+                android:gravity="center"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:paddingEnd="20dp"
+                android:paddingStart="20dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                tools:text="Spain">
+</TextView>
