@@ -13,10 +13,12 @@ import org.junit.Test
 import org.junit.rules.TestRule
 
 private const val COUNTRY_NAME = "Spain"
-private const val COUNTRY_NAME_2 = "Spain"
+private const val COUNTRY_NAME_2 = "Italy"
+private val BORDER = BorderFixture.aBorder(COUNTRY_NAME)
+private val BORDER_2 = BorderFixture.aBorder(COUNTRY_NAME_2)
 private val COUNTRY_FIXTURE = CountryFixture.aCountry(name = COUNTRY_NAME)
 private val COUNTRY_DETAILED_MODEL_FIXTURE = CountryDetailedModelFixture.aCountry(COUNTRY_NAME)
-private val COUNTRY_BORDERS = CountryBordersModel(listOf(COUNTRY_NAME, COUNTRY_NAME_2))
+private val COUNTRY_BORDERS = CountryBordersModel(listOf(BORDER, BORDER_2))
 
 class CountryDetailedViewModelTest {
 

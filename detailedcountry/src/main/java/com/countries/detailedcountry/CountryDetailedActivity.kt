@@ -70,10 +70,10 @@ class CountryDetailedActivity : DaggerAppCompatActivity() {
 
                     it.borders?.let { borders ->
                         bordersTextView.visibleOrGone(borders.list.isNotEmpty())
-                        borders.list.forEach { countryName ->
+                        borders.list.forEach { country ->
                             val borderView = BorderView(this@CountryDetailedActivity)
-                            borderView.bind(countryName) {
-                                navigator.countryDetailedNavigator.open(this@CountryDetailedActivity, countryName)
+                            borderView.bind(country) {
+                                navigator.countryDetailedNavigator.open(this@CountryDetailedActivity, country.name)
                             }
                             bordersLayout.addView(borderView)
                         }

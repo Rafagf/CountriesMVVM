@@ -4,6 +4,8 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
+import com.countries.core.gone
+import com.countries.core.visible
 import kotlinx.android.synthetic.main.border_view.view.*
 
 class BorderView @JvmOverloads constructor(
@@ -17,8 +19,16 @@ class BorderView @JvmOverloads constructor(
         View.inflate(context, R.layout.border_view, this)
     }
 
-    fun bind(country: String, action: () -> Unit) {
-        countryTextView.text = country
+    fun bind(border: BorderModel, action: () -> Unit) {
+        countryTextView.text = border.name
+        when (border.capital == null) {
+            true -> capitalTextView.gone()
+            false -> {
+                capitalTextView.text = border.capital
+                capitalTextView.visible()
+            }
+        }
+
         setOnClickListener { action.invoke() }
     }
 }
