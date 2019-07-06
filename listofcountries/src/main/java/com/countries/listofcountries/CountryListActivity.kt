@@ -2,6 +2,7 @@ package com.countries.listofcountries
 
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
@@ -25,6 +26,7 @@ class CountryListActivity : DaggerAppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        applyTheme()
         setContentView(R.layout.activity_country_list)
         setSupportActionBar(toolbar)
         setSearchView()
@@ -72,10 +74,19 @@ class CountryListActivity : DaggerAppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.main, menu)
+        menuInflater.inflate(R.menu.main_menu, menu)
         val item = menu.findItem(R.id.action_search)
         searchView.setMenuItem(item)
         return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.theme_toggle -> {
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     private fun setCountryList() {
@@ -101,11 +112,11 @@ class CountryListActivity : DaggerAppCompatActivity() {
 
             setOnSearchViewListener(object : MaterialSearchView.SearchViewListener {
                 override fun onSearchViewShown() {
-                    setStatusBarColor(R.color.plain_grey)
+                    setStatusBarColor(R.color.grey_clear)
                 }
 
                 override fun onSearchViewClosed() {
-                    setStatusBarColor(R.color.color_primary)
+                    setStatusBarColor(R.color.blue_sky)
                 }
             })
         }

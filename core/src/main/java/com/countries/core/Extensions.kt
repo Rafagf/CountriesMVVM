@@ -6,6 +6,7 @@ import android.util.AttributeSet
 import android.view.View
 import androidx.annotation.ColorRes
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.countries.core.themes.ThemePreferences
 
 fun View.visibleOrGone(isVisible: Boolean) {
     if (isVisible) {
@@ -23,7 +24,12 @@ fun View.visible() {
     visibility = View.VISIBLE
 }
 
-fun <T> View.readAttributes(attributeSet: AttributeSet, ids: IntArray, defStyleAttr: Int, block: TypedArray.() -> T): T {
+fun <T> View.readAttributes(
+    attributeSet: AttributeSet,
+    ids: IntArray,
+    defStyleAttr: Int,
+    block: TypedArray.() -> T
+): T {
     fun <T> AttributeSet.read(ids: IntArray, block: TypedArray.() -> T): T {
         val attributes = context.theme.obtainStyledAttributes(this, ids, defStyleAttr, 0)
         try {
@@ -41,5 +47,9 @@ fun Activity.setStatusBarColor(@ColorRes color: Int) {
     this.window.statusBarColor = getColor(color)
 }
 
+fun Activity.applyTheme() {
+    val themePreferences = ThemePreferences(this)
+    setTheme(themePreferences.getTheme().styleId)
+}
 
 
