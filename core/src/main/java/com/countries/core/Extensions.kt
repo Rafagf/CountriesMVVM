@@ -3,8 +3,9 @@ package com.countries.core
 import android.app.Activity
 import android.content.res.TypedArray
 import android.util.AttributeSet
+import android.util.TypedValue
 import android.view.View
-import androidx.annotation.ColorRes
+import androidx.annotation.ColorInt
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.countries.core.themes.ThemePreferences
 
@@ -43,8 +44,8 @@ fun <T> View.readAttributes(
 
 fun LinearLayoutManager.isAtTop() = findFirstCompletelyVisibleItemPosition() == 0
 
-fun Activity.setStatusBarColor(@ColorRes color: Int) {
-    this.window.statusBarColor = getColor(color)
+fun Activity.setStatusBarColor(@ColorInt color: Int) {
+    this.window.statusBarColor = color
 }
 
 fun Activity.applyTheme() {
@@ -52,4 +53,11 @@ fun Activity.applyTheme() {
     setTheme(themePreferences.getTheme().styleId)
 }
 
+fun Activity.getColorFromTheme(attribute: Int): Int {
+    val typedValue = TypedValue()
+    val a = obtainStyledAttributes(typedValue.data, intArrayOf(attribute))
+    val color = a.getColor(0, 0)
+    a.recycle()
+    return color
+}
 

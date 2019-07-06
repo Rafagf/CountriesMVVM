@@ -20,7 +20,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:textSize="16sp"
-            android:textColor="@color/plain_white"
+            android:textColor="@color/white"
             android:fontFamily="sans-serif-medium"
             android:gravity="center"
             tools:text="Spain"/>
@@ -33,7 +33,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_height="wrap_content"
             android:textSize="12sp"
-            android:textColor="@color/plain_white"
+            android:textColor="@color/white"
             android:fontFamily="sans-serif-light"
             android:gravity="center"
             tools:text="Madrid"/>

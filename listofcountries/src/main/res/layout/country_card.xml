@@ -3,17 +3,17 @@
 <androidx.cardview.widget.CardView
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        xmlns:tools="http://schemas.android.com/tools"
-        card_view:cardCornerRadius="3dp"
+        android:layout_marginTop="6dp"
+        card_view:cardBackgroundColor="?attr/countriesColorPrimary"
+        card_view:cardCornerRadius="6dp"
         card_view:cardElevation="4dp"
         card_view:cardUseCompatPadding="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -24,18 +24,20 @@
                 android:scaleType="fitXY"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@color/plain_grey"/>
+                app:srcCompat="?attr/flagPlaceHolderBackground"/>
 
         <TextView
                 android:id="@+id/continentTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:textColor="@android:color/black"
+                android:layout_marginEnd="8dp"
+                android:textColor="?attr/countriesColorText"
                 android:textSize="15sp"
                 app:layout_constraintBottom_toTopOf="@+id/populationTextView"
                 app:layout_constraintStart_toEndOf="@+id/flagImageView"
                 app:layout_constraintTop_toBottomOf="@+id/nameTextView"
+                style="@style/CountryListSubTitle"
                 tools:text="Region: Asia"/>
 
         <TextView
@@ -43,11 +45,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:textColor="@android:color/black"
-                android:textSize="15sp"
+                android:layout_marginEnd="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/flagImageView"
                 app:layout_constraintTop_toBottomOf="@+id/continentTextView"
+                style="@style/CountryListSubTitle"
                 tools:text="Population 28.875"/>
 
         <TextView
@@ -55,15 +57,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:ellipsize="end"
-                android:maxLines="2"
-                android:textColor="@android:color/black"
-                android:textSize="17sp"
-                android:textStyle="bold"
+                android:layout_marginEnd="8dp"
                 app:layout_constraintBottom_toTopOf="@+id/continentTextView"
                 app:layout_constraintStart_toEndOf="@+id/flagImageView"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_chainStyle="spread"
+                style="@style/CountryListTitle"
                 tools:text="Albania"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

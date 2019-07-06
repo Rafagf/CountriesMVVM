@@ -64,7 +64,7 @@ class CountryDetailedActivity : DaggerAppCompatActivity() {
 
                         Picasso.with(this@CountryDetailedActivity)
                             .load(it.country.flag)
-                            .placeholder(R.color.plain_grey)
+                            .placeholder(R.color.grey_primary)
                             .into(flagImageView)
                     }
 

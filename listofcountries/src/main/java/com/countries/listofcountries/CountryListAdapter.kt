@@ -25,7 +25,6 @@ class CountryListAdapter(
             populationTextView.text = country.population
             Picasso.with(context)
                 .load(country.flagUrl)
-                .placeholder(R.color.plain_grey)
                 .into(flagImageView)
             setOnClickListener { onClick(country.name) }
         }

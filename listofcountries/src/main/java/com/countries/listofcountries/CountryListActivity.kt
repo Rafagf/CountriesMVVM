@@ -27,6 +27,7 @@ class CountryListActivity : DaggerAppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         applyTheme()
+        setStatusBarColor(getColorFromTheme(R.attr.countriesColorPrimary))
         setContentView(R.layout.activity_country_list)
         setSupportActionBar(toolbar)
         setSearchView()
@@ -112,11 +113,11 @@ class CountryListActivity : DaggerAppCompatActivity() {
 
             setOnSearchViewListener(object : MaterialSearchView.SearchViewListener {
                 override fun onSearchViewShown() {
-                    setStatusBarColor(R.color.grey_clear)
+                    setStatusBarColor(getColorFromTheme(R.attr.countriesColorPrimaryInverse))
                 }
 
                 override fun onSearchViewClosed() {
-                    setStatusBarColor(R.color.blue_sky)
+                    setStatusBarColor(getColorFromTheme(R.attr.countriesColorPrimary))
                 }
             })
         }
