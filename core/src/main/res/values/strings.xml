@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">core</string>
     <string name="refresh">Refresh</string>
     <string name="error_body">Are you connected to the internet?</string>
     <string name="error_header">Oops! Something went wrong</string>
@@ -9,4 +8,6 @@
     <string name="demonym">Demonym</string>
     <string name="native_name">Native name</string>
     <string name="border_countries">Border countries</string>
+    <string name="change_theme">Change theme</string>
+    <string name="app_title">Countries of the world</string>
 </resources>

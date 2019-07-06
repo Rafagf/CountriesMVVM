@@ -5,7 +5,7 @@
     <application>
         <activity
                 android:name=".CountryListActivity"
-                android:label="@string/title_activity_country_list"
+                android:label="@string/app_title"
                 android:launchMode="singleTop"
                 android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
