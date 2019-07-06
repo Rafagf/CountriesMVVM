@@ -11,22 +11,20 @@
     </style>
 
     <style name="Dark">
-        <item name="countriesColorPrimary">@color/blue_dark</item>
-        <item name="countriesColorSecondary">@color/pink</item>
-        <item name="countriesColorBackground">@color/black</item>
-        <item name="countriesColorPrimaryInverse">@color/blue_sky</item>
-        <item name="countriesColorText">@color/white</item>
-        <item name="flagPlaceHolderBackground">@color/grey_dark</item>
+        <item name="countriesColorPrimary">@color/black_primary</item>
+        <item name="countriesColorPrimaryInverse">@color/grey_primary</item>
+        <item name="countriesColorBackground">@color/black_secondary</item>
+        <item name="countriesColorSecondary">@color/purple</item>
+        <item name="countriesColorText">@color/grey_primary</item>
+        <item name="flagPlaceHolderBackground">@color/grey_secondary</item>
     </style>
 
     <style name="Light">
         <item name="countriesColorPrimary">@color/blue_sky</item>
-        <item name="countriesColorSecondary">@color/pink</item>
+        <item name="countriesColorSecondary">@color/purple</item>
         <item name="countriesColorBackground">@color/white</item>
-        <item name="countriesColorPrimaryInverse">@color/blue_dark</item>
         <item name="countriesColorText">@color/white</item>
-
-        <item name="flagPlaceHolderBackground">@color/grey_clear</item>
+        <item name="flagPlaceHolderBackground">@color/grey_primary</item>
 
 
     </style>

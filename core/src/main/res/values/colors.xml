@@ -2,10 +2,11 @@
 <resources>
     <color name="blue_sky">#4397DA</color>
     <color name="blue_dark">#040E50</color>
-    <color name="pink">#FF4081</color>
+    <color name="purple">#C292FC</color>
     <color name="white">#FFFFFF</color>
-    <color name="grey_clear">#B1B1B1</color>
-    <color name="grey_dark">#575555</color>
-    <color name="black">#000000</color>
+    <color name="grey_primary">#E1E1E1</color>
+    <color name="grey_secondary">#575555</color>
+    <color name="black_primary">#1D1D1D</color>
+    <color name="black_secondary">#131313</color>
 
 </resources>

@@ -1,7 +1,22 @@
 <resources>
     <style name="CountriesToolBar" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
-        <item name="android:textColorPrimary">?attr/countriesColorPrimary</item>
-        <item name="android:background">?attr/countriesColorText</item>
+        <item name="android:textColorPrimary">?attr/countriesColorText</item>
+        <item name="android:background">?attr/countriesColorPrimary</item>
+    </style>
+
+    <style name="CountryListTitle">
+        <item name="android:textColor">?attr/countriesColorText</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="CountryListSubTitle">
+        <item name="android:textColor">?attr/countriesColorText</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textSize">15sp</item>
     </style>
 
     <style name="ErrorTitle">
