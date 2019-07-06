@@ -1,6 +1,6 @@
 <resources>
     <style name="CountriesToolBar" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
-        <item name="android:textColorPrimary">?attr/countriesColorText</item>
+        <item name="android:textColorPrimary">?attr/countriesToolbarColorText</item>
         <item name="android:background">?attr/countriesColorPrimary</item>
     </style>
 
@@ -20,8 +20,8 @@
     </style>
 
     <style name="MaterialSearchView">
-        <item name="android:textColor">?attr/countriesColorText</item>
-        <item name="android:textColorHint">?attr/countriesColorText</item>
+        <item name="android:textColor">?attr/countriesToolbarColorText</item>
+        <item name="android:textColorHint">?attr/countriesToolbarColorText</item>
         <item name="searchCloseIcon">@drawable/ic_action_navigation_close_inverted</item>
         <item name="searchBackIcon">@drawable/ic_action_navigation_arrow_back_inverted</item>
         <item name="searchBackground">?attr/countriesColorPrimary</item>

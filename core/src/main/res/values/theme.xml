@@ -11,20 +11,26 @@
     </style>
 
     <style name="Dark">
+        <item name="android:colorControlActivated">@color/white</item>
         <item name="countriesColorPrimary">@color/black_primary</item>
-        <item name="countriesColorPrimaryInverse">@color/grey_primary</item>
-        <item name="countriesColorBackground">@color/black_secondary</item>
-        <item name="countriesColorSecondary">@color/purple</item>
+        <item name="countriesColorSecondary">@color/black_secondary</item>
+        <item name="countriesColorBackground">@color/black_primary</item>
         <item name="countriesColorText">@color/grey_primary</item>
-        <item name="flagPlaceHolderBackground">@color/grey_secondary</item>
+        <item name="countriesToolbarColorText">@color/grey_primary</item>
+        <item name="countriesFlagPlaceHolderBackground">@color/black_primary</item>
+        <item name="countriesFloatingButtonBackground">@color/white</item>
     </style>
 
     <style name="Light">
-        <item name="countriesColorPrimary">@color/blue_sky</item>
-        <item name="countriesColorSecondary">@color/purple</item>
+        <item name="android:colorControlActivated">@color/purple</item>
+        <item name="countriesColorPrimary">@color/purple</item>
+        <item name="countriesColorSecondary">@color/white</item>
         <item name="countriesColorBackground">@color/white</item>
-        <item name="countriesColorText">@color/white</item>
-        <item name="flagPlaceHolderBackground">@color/grey_primary</item>
+        <item name="countriesColorText">@color/black_primary</item>
+        <item name="countriesToolbarColorText">@color/white</item>
+        <item name="countriesFlagPlaceHolderBackground">@color/grey_primary</item>
+        <item name="countriesFloatingButtonBackground">@color/white</item>
+
 
 
     </style>

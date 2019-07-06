@@ -4,7 +4,7 @@ import android.content.Context
 
 private const val COUNTRIES_PREFERENCES = "countries_preferences"
 private const val PREF_KEY_THEME = "pref_theme"
-private val DEFAULT_THEME = Theme.DARK
+private val DEFAULT_THEME = Theme.LIGHT
 
 class ThemePreferences(context: Context) {
 

@@ -2,11 +2,13 @@
 <resources>
   <declare-styleable name="BaseTheme">
     <attr format="color" name="countriesColorPrimary"/>
-    <attr format="color" name="countriesColorPrimaryInverse"/>
     <attr format="color" name="countriesColorSecondary"/>
     <attr format="color" name="countriesColorBackground"/>
     <attr format="color" name="countriesColorText"/>
-    <attr format="color" name="flagPlaceHolderBackground"/>
+    <attr format="color" name="countriesToolbarColorText"/>
+    <attr format="color" name="countriesFloatingButtonBackground"/>
+    <attr format="color" name="countriesFlagPlaceHolderBackground"/>
+
   </declare-styleable>
 
   <declare-styleable name="ErrorView">
