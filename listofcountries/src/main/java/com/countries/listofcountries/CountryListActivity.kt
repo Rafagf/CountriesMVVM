@@ -110,16 +110,6 @@ class CountryListActivity : DaggerAppCompatActivity() {
                     return false
                 }
             })
-
-            setOnSearchViewListener(object : MaterialSearchView.SearchViewListener {
-                override fun onSearchViewShown() {
-                    setStatusBarColor(getColorFromTheme(R.attr.countriesColorPrimaryInverse))
-                }
-
-                override fun onSearchViewClosed() {
-                    setStatusBarColor(getColorFromTheme(R.attr.countriesColorPrimary))
-                }
-            })
         }
     }
 

@@ -4,10 +4,7 @@ import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import com.countries.core.AppNavigator
-import com.countries.core.gone
-import com.countries.core.visible
-import com.countries.core.visibleOrGone
+import com.countries.core.*
 import com.squareup.picasso.Picasso
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_country_content_state.*
@@ -26,6 +23,7 @@ class CountryDetailedActivity : DaggerAppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        applyTheme()
         setContentView(R.layout.activity_country_detailed)
         overridePendingTransition(R.anim.slide_in_up, R.anim.stay)
         setToolbar()
