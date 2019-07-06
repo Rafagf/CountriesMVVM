@@ -1,8 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="ErrorView">
-        <attr name="icon" format="reference"/>
-        <attr name="message" format="string"/>
-        <attr name="title" format="string"/>
-    </declare-styleable>
+  <!--REBRANDING-->
+
+  <declare-styleable name="BaseTheme">
+    <attr format="color" name="countriesColorPrimary"/>
+    <attr format="color" name="countriesColorPrimaryInverse"/>
+    <attr format="color" name="countriesColorSecondary"/>
+    <attr format="color" name="countriesColorBackground"/>
+    <attr format="color" name="countriesColorText"/>
+    <attr format="color" name="flagPlaceHolderBackground"/>
+
+
+  </declare-styleable>
+
+  <declare-styleable name="ErrorView">
+    <attr name="icon" format="reference"/>
+    <attr name="message" format="string"/>
+    <attr name="title" format="string"/>
+  </declare-styleable>
+
+
 </resources>

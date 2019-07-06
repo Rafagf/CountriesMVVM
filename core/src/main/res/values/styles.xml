@@ -1,38 +1,19 @@
 <resources>
-
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/color_primary</item>
-        <item name="colorPrimaryDark">@color/color_primary_dark</item>
-        <item name="colorAccent">@color/color_accent</item>
-        <item name="windowNoTitle">true</item>
-        <item name="windowActionBar">false</item>
-    </style>
-
-    <style name="AppTheme.NoActionBar" parent="AppTheme">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
-    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
-
     <style name="CountriesToolBar" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
-        <item name="android:textColorPrimary">@color/plain_white</item>
+        <item name="android:textColorPrimary">?attr/countriesColorPrimary</item>
+        <item name="android:background">?attr/countriesColorText</item>
     </style>
 
     <style name="ErrorTitle">
-        <!--TODO colors should use attributes-->
-        <item name="android:textColor">@color/color_primary_dark</item>
+        <item name="android:textColor">@color/blue_dark</item>
         <item name="android:textSize">20sp</item>
         <item name="android:fontFamily">sans-serif-medium</item>
     </style>
 
     <style name="ErrorBody">
-        <!--TODO colors should use attributes-->
-        <item name="android:textColor">@color/color_primary_dark</item>
+        <item name="android:textColor">@color/blue_dark</item>
         <item name="android:textSize">16sp</item>
     </style>
+
 
 </resources>
