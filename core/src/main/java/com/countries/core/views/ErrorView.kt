@@ -24,7 +24,7 @@ class ErrorView @JvmOverloads constructor(
         attrs.let {
             readAttributes(it, R.styleable.ErrorView, defStyleAttr) {
                 CustomAttributes(
-                    icon = getDrawable(R.styleable.ErrorView_icon) ?: context.getDrawable(R.drawable.refresh),
+                    icon = getDrawable(R.styleable.ErrorView_icon) ?: context.getDrawable(R.drawable.ic_refresh),
                     title = getString(R.styleable.ErrorView_title) ?: context.getString(R.string.error_header),
                     message = getString(R.styleable.ErrorView_message) ?: context.getString(R.string.error_body)
                 )
