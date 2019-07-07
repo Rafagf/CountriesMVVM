@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.activity_country_content_state.*
 import kotlinx.android.synthetic.main.activity_country_detailed.*
 import javax.inject.Inject
 
-const val MAP_ZOOM = 3.0
+const val MAP_ZOOM = 2.8
 
 class CountryDetailedActivity : DaggerAppCompatActivity() {
 
