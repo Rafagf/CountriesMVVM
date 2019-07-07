@@ -2,7 +2,7 @@
 
 Playground Pet project. The app follows MVVM (ViewStates through single source of truth) + the Repository pattern (Local & Remote). 
 
-Buzz-Words used in the project: Modularization, Dagger-Android, ViewModel, Retrofit, Room, RxJava2, Retrofit, Moshi, JUnit, Mockito
+Buzz-Words used in the project: Modularisation, Dagger-Android, ViewModel, Retrofit, Room, RxJava2, Retrofit, Moshi, JUnit, Mockito
 
 It supports Dark&Light modes thanks to theming the app. 
 
