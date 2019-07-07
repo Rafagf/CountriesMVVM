@@ -4,6 +4,7 @@ import androidx.room.TypeConverter
 
 
 class BordersConverter {
+
     companion object {
         @TypeConverter
         @JvmStatic

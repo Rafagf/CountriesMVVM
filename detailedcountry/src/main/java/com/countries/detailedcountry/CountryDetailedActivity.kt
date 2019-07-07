@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.activity_country_content_state.*
 import kotlinx.android.synthetic.main.activity_country_detailed.*
 import javax.inject.Inject
 
-const val MAP_ZOOM = 3.5
+const val MAP_ZOOM = 3.0
 
 class CountryDetailedActivity : DaggerAppCompatActivity() {
 
@@ -108,8 +108,7 @@ class CountryDetailedActivity : DaggerAppCompatActivity() {
         }
     }
 
-    private fun setCountryMap(country: String, blabla: LatLng) {
-        val latLng = LatLng(MAP_ZOOM, MAP_ZOOM)
+    private fun setCountryMap(country: String, latLng: LatLng) {
         googleMap.addMarker(
             MarkerOptions()
                 .position(latLng)
