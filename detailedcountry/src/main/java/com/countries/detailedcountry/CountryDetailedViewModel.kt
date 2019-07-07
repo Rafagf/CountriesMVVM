@@ -14,7 +14,7 @@ class CountryDetailedViewModel @Inject constructor(
     private val mapper: CountryDetailedModelMapper
 ) : ViewModel() {
 
-    val liveData = MutableLiveData<Model>(Model.Empty)
+    val liveData = MutableLiveData<ViewState>(ViewState.Empty)
     private val compositeDisposable = CompositeDisposable()
 
     sealed class Event {
@@ -22,14 +22,14 @@ class CountryDetailedViewModel @Inject constructor(
         data class BordersFetched(val payload: CountryBordersModel) : Event()
     }
 
-    sealed class Model {
-        object Empty : Model()
-        object Error : Model()
-        data class Loading(val content: Content? = null) : Model()
+    sealed class ViewState {
+        object Empty : ViewState()
+        object Error : ViewState()
+        data class Loading(val content: Content? = null) : ViewState()
         data class Content(
             val country: CountryDetailedModel? = null,
             val borders: CountryBordersModel? = null
-        ) : Model()
+        ) : ViewState()
     }
 
     fun start(name: String) {
@@ -43,15 +43,15 @@ class CountryDetailedViewModel @Inject constructor(
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .map { country ->
-                    createNextModel(
+                    createNextState(
                         event = Event.CountryFetched(country),
                         currentState = liveData.value!!
                     )
                 }
                 .toObservable()
-                .startWith(Model.Loading())
+                .startWith(ViewState.Loading())
                 .onErrorResumeNext { _: Throwable ->
-                    Observable.just(Model.Error)
+                    Observable.just(ViewState.Error)
                 }
                 .subscribe {
                     liveData.value = it
@@ -65,7 +65,7 @@ class CountryDetailedViewModel @Inject constructor(
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .map {
-                    createNextModel(
+                    createNextState(
                         event = Event.BordersFetched(it),
                         currentState = liveData.value!!
                     )
@@ -77,52 +77,52 @@ class CountryDetailedViewModel @Inject constructor(
         )
     }
 
-    private fun createNextModel(event: Event, currentState: Model): Model {
+    private fun createNextState(event: Event, currentState: ViewState): ViewState {
         return when (event) {
-            is Event.CountryFetched -> createCountryModel(event, currentState)
-            is Event.BordersFetched -> createBordersModel(event, currentState)
+            is Event.CountryFetched -> createCountryState(event, currentState)
+            is Event.BordersFetched -> createBordersState(event, currentState)
         }
     }
 
-    private fun createCountryModel(
+    private fun createCountryState(
         event: Event.CountryFetched,
-        currentState: Model
-    ): Model {
+        currentState: ViewState
+    ): ViewState {
         return when (currentState) {
-            is Model.Loading -> {
-                Model.Content(
+            is ViewState.Loading -> {
+                ViewState.Content(
                     country = mapper.map(event.payload),
                     borders = currentState.content?.borders
                 )
             }
-            is Model.Content -> {
-                Model.Content(
+            is ViewState.Content -> {
+                ViewState.Content(
                     country = mapper.map(event.payload),
                     borders = currentState.borders
                 )
             }
-            else -> Model.Empty
+            else -> ViewState.Empty
         }
     }
 
-    private fun createBordersModel(
+    private fun createBordersState(
         event: Event.BordersFetched,
-        currentState: Model
-    ): Model {
+        currentState: ViewState
+    ): ViewState {
         return when (currentState) {
-            is Model.Loading -> {
-                Model.Content(
+            is ViewState.Loading -> {
+                ViewState.Content(
                     country = currentState.content?.country,
                     borders = event.payload
                 )
             }
-            is Model.Content -> {
-                Model.Content(
+            is ViewState.Content -> {
+                ViewState.Content(
                     country = currentState.country,
                     borders = event.payload
                 )
             }
-            else -> Model.Empty
+            else -> ViewState.Empty
         }
     }
 

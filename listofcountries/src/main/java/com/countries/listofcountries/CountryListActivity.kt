@@ -38,7 +38,7 @@ class CountryListActivity : DaggerAppCompatActivity() {
         viewModel = ViewModelProviders.of(this, viewModelFactory)[CountryListViewModel::class.java]
         viewModel.liveData.observe(this, Observer {
             when (it) {
-                is CountryListViewModel.Model.Loading -> {
+                is CountryListViewModel.ViewState.Loading -> {
                     searchView.enabled(false)
                     loadingView.visible()
                     errorView.gone()
@@ -47,7 +47,7 @@ class CountryListActivity : DaggerAppCompatActivity() {
 
                 }
 
-                is CountryListViewModel.Model.Error -> {
+                is CountryListViewModel.ViewState.Error -> {
                     searchView.enabled(false)
                     loadingView.gone()
                     errorView.visible()
@@ -55,7 +55,7 @@ class CountryListActivity : DaggerAppCompatActivity() {
                     scrollToTop.gone()
                 }
 
-                is CountryListViewModel.Model.Content -> {
+                is CountryListViewModel.ViewState.Content -> {
                     searchView.enabled(true)
                     loadingView.gone()
                     errorView.gone()

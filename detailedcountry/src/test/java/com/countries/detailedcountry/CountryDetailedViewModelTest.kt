@@ -35,7 +35,7 @@ class CountryDetailedViewModelTest {
     private val mapper = mock<CountryDetailedModelMapper>()
 
     private val viewModel = CountryDetailedViewModel(useCase, mapper)
-    private val observer: TestObserver<CountryDetailedViewModel.Model> = TestObserver()
+    private val observer: TestObserver<CountryDetailedViewModel.ViewState> = TestObserver()
 
     @Before
     fun setUp() {
@@ -45,55 +45,55 @@ class CountryDetailedViewModelTest {
     }
 
     @Test
-    fun `when starting then emits loading model`() {
+    fun `when starting then emits loading view state`() {
         viewModel.start(COUNTRY_NAME)
 
         observer.assertValues(
-            CountryDetailedViewModel.Model.Empty,
-            CountryDetailedViewModel.Model.Loading()
+            CountryDetailedViewModel.ViewState.Empty,
+            CountryDetailedViewModel.ViewState.Loading()
         )
     }
 
     @Test
-    fun `given error when fetching country then emits error model`() {
+    fun `given error when fetching country then emits error view state`() {
         whenever(useCase.getCountry(COUNTRY_NAME)).thenReturn(Single.error(Throwable()))
 
         viewModel.start(COUNTRY_NAME)
 
         observer.assertValues(
-            CountryDetailedViewModel.Model.Empty,
-            CountryDetailedViewModel.Model.Loading(),
-            CountryDetailedViewModel.Model.Error
+            CountryDetailedViewModel.ViewState.Empty,
+            CountryDetailedViewModel.ViewState.Loading(),
+            CountryDetailedViewModel.ViewState.Error
         )
     }
 
     @Test
-    fun `when country fetched then emits country content model`() {
+    fun `when country fetched then emits country content view state`() {
         whenever(useCase.getCountry(COUNTRY_NAME)).thenReturn(Single.just(COUNTRY_FIXTURE))
         whenever(mapper.map(COUNTRY_FIXTURE)).thenReturn(COUNTRY_DETAILED_MODEL_FIXTURE)
 
         viewModel.start(COUNTRY_NAME)
 
         observer.assertValues(
-            CountryDetailedViewModel.Model.Empty,
-            CountryDetailedViewModel.Model.Loading(),
-            CountryDetailedViewModel.Model.Content(
+            CountryDetailedViewModel.ViewState.Empty,
+            CountryDetailedViewModel.ViewState.Loading(),
+            CountryDetailedViewModel.ViewState.Content(
                 country = COUNTRY_DETAILED_MODEL_FIXTURE
             )
         )
     }
 
     @Test
-    fun `when borders fetched then emits borders content model`() {
+    fun `when borders fetched then emits borders content view state`() {
         whenever(useCase.getCountry(COUNTRY_NAME)).thenReturn(Single.never())
         whenever(useCase.getBorderCountries(COUNTRY_NAME)).thenReturn(Single.just(COUNTRY_BORDERS))
 
         viewModel.start(COUNTRY_NAME)
 
         observer.assertValues(
-            CountryDetailedViewModel.Model.Empty,
-            CountryDetailedViewModel.Model.Loading(),
-            CountryDetailedViewModel.Model.Content(
+            CountryDetailedViewModel.ViewState.Empty,
+            CountryDetailedViewModel.ViewState.Loading(),
+            CountryDetailedViewModel.ViewState.Content(
                 country = null,
                 borders = COUNTRY_BORDERS
             )
@@ -101,7 +101,7 @@ class CountryDetailedViewModelTest {
     }
 
     @Test
-    fun `when both borders and country fetched then emits full content state`() {
+    fun `when both borders and country fetched then emits full content view state`() {
         whenever(useCase.getCountry(COUNTRY_NAME)).thenReturn(Single.just(COUNTRY_FIXTURE))
         whenever(mapper.map(COUNTRY_FIXTURE)).thenReturn(COUNTRY_DETAILED_MODEL_FIXTURE)
         whenever(useCase.getBorderCountries(COUNTRY_NAME)).thenReturn(Single.just(COUNTRY_BORDERS))
@@ -109,13 +109,13 @@ class CountryDetailedViewModelTest {
         viewModel.start(COUNTRY_NAME)
 
         observer.assertValues(
-            CountryDetailedViewModel.Model.Empty,
-            CountryDetailedViewModel.Model.Loading(),
-            CountryDetailedViewModel.Model.Content(
+            CountryDetailedViewModel.ViewState.Empty,
+            CountryDetailedViewModel.ViewState.Loading(),
+            CountryDetailedViewModel.ViewState.Content(
                 country = COUNTRY_DETAILED_MODEL_FIXTURE,
                 borders = null
             ),
-            CountryDetailedViewModel.Model.Content(
+            CountryDetailedViewModel.ViewState.Content(
                 country = COUNTRY_DETAILED_MODEL_FIXTURE,
                 borders = COUNTRY_BORDERS
             )

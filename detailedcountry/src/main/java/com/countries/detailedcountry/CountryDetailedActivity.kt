@@ -34,19 +34,19 @@ class CountryDetailedActivity : DaggerAppCompatActivity() {
         viewModel.start(intent.getStringExtra(COUNTRY_NAME_TAG))
         viewModel.liveData.observe(this, Observer {
             when (it) {
-                is CountryDetailedViewModel.Model.Loading -> {
+                is CountryDetailedViewModel.ViewState.Loading -> {
                     errorView.gone()
                     contentView.gone()
                     loadingView.visible()
                 }
 
-                is CountryDetailedViewModel.Model.Error -> {
+                is CountryDetailedViewModel.ViewState.Error -> {
                     loadingView.gone()
                     contentView.gone()
                     errorView.visible()
                 }
 
-                is CountryDetailedViewModel.Model.Content -> {
+                is CountryDetailedViewModel.ViewState.Content -> {
                     loadingView.gone()
                     errorView.gone()
                     contentView.visible()
