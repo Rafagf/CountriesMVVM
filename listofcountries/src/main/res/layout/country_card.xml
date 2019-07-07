@@ -28,41 +28,45 @@
 
         <TextView
                 android:id="@+id/continentTextView"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="8dp"
-                android:textColor="?attr/countriesColorText"
-                android:textSize="15sp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:gravity="center"
                 app:layout_constraintBottom_toTopOf="@+id/populationTextView"
                 app:layout_constraintStart_toEndOf="@+id/flagImageView"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/nameTextView"
-                style="@style/CountryListSubTitle"
+                style="@style/CountryTextSubTitle"
                 tools:text="Region: Asia"/>
 
         <TextView
                 android:id="@+id/populationTextView"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="8dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:gravity="center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/flagImageView"
                 app:layout_constraintTop_toBottomOf="@+id/continentTextView"
-                style="@style/CountryListSubTitle"
+                app:layout_constraintEnd_toEndOf="parent"
+                style="@style/CountryTextSubTitle"
                 tools:text="Population 28.875"/>
 
         <TextView
                 android:id="@+id/nameTextView"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="8dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:gravity="center"
                 app:layout_constraintBottom_toTopOf="@+id/continentTextView"
                 app:layout_constraintStart_toEndOf="@+id/flagImageView"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintVertical_chainStyle="spread"
-                style="@style/CountryListTitle"
+                style="@style/CountryTextTitle"
                 tools:text="Albania"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

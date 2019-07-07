@@ -26,8 +26,8 @@ class CountryListModelMapper @Inject constructor(private val resources: Resource
 
     private fun getContinent(country: Country): String {
         return when (country.continent?.isNotEmpty()) {
-            true -> "${resources.getString(R.string.continent)}: ${country.continent}"
-            else -> "${resources.getString(R.string.continent)}: -"
+            true -> "${country.continent}"
+            else -> "-"
         }
     }
 
