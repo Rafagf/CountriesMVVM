@@ -5,11 +5,16 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.countries.core.*
-import com.squareup.picasso.Picasso
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_country_content_state.*
 import kotlinx.android.synthetic.main.activity_country_detailed.*
 import javax.inject.Inject
+
+const val MAP_ZOOM = 3.5
 
 class CountryDetailedActivity : DaggerAppCompatActivity() {
 
@@ -21,6 +26,8 @@ class CountryDetailedActivity : DaggerAppCompatActivity() {
 
     lateinit var viewModel: CountryDetailedViewModel
 
+    lateinit var googleMap: GoogleMap
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         applyTheme()
@@ -28,11 +35,12 @@ class CountryDetailedActivity : DaggerAppCompatActivity() {
         setContentView(R.layout.activity_country_detailed)
         overridePendingTransition(R.anim.slide_in_up, R.anim.stay)
         setToolbar()
+        setMapView(savedInstanceState)
         setErrorView()
 
         viewModel = ViewModelProviders.of(this, viewModelFactory)[CountryDetailedViewModel::class.java]
         viewModel.start(intent.getStringExtra(COUNTRY_NAME_TAG))
-        viewModel.liveData.observe(this, Observer {
+        viewModel.getLiveData().observe(this, Observer {
             when (it) {
                 is CountryDetailedViewModel.ViewState.Loading -> {
                     errorView.gone()
@@ -60,11 +68,8 @@ class CountryDetailedActivity : DaggerAppCompatActivity() {
                         areaTextView.text = area
                         demonymTextView.text = demonym
                         nativeNameTextView.text = nativeName
-
-                        Picasso.with(this@CountryDetailedActivity)
-                            .load(it.country.flag)
-                            .placeholder(R.color.grey_primary)
-                            .into(flagImageView)
+                        setCountryMap(it.country.name, LatLng(latLng.lat, latLng.lng))
+                        loadImage(flag, flagImageView)
                     }
 
                     it.borders?.let { borders ->
@@ -82,6 +87,14 @@ class CountryDetailedActivity : DaggerAppCompatActivity() {
         })
     }
 
+    private fun setMapView(savedInstanceState: Bundle?) {
+        mapView.onCreate(savedInstanceState)
+        mapView.getMapAsync {
+            googleMap = it
+            googleMap.uiSettings.setAllGesturesEnabled(false)
+        }
+    }
+
     private fun setToolbar() {
         setSupportActionBar(toolbar)
         val actionBar = supportActionBar
@@ -93,6 +106,16 @@ class CountryDetailedActivity : DaggerAppCompatActivity() {
         errorView.onClick {
             viewModel.start(intent.getStringExtra(COUNTRY_NAME_TAG))
         }
+    }
+
+    private fun setCountryMap(country: String, blabla: LatLng) {
+        val latLng = LatLng(MAP_ZOOM, MAP_ZOOM)
+        googleMap.addMarker(
+            MarkerOptions()
+                .position(latLng)
+                .title(country)
+        )
+        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, MAP_ZOOM.toFloat()))
     }
 
     companion object {
