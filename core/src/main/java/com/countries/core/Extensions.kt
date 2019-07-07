@@ -46,8 +46,6 @@ fun <T> View.readAttributes(
     return attributeSet.read(ids, block)
 }
 
-fun LinearLayoutManager.isAtTop() = findFirstCompletelyVisibleItemPosition() == 0
-
 fun Activity.setStatusBarColor(@ColorInt color: Int) {
     this.window.statusBarColor = color
 }
@@ -81,4 +79,6 @@ fun Context.loadImage(url: String, view: ImageView) {
         .load(url)
         .into(view)
 }
+
+fun LinearLayoutManager.isAtTop() = findFirstCompletelyVisibleItemPosition() == 0
 
