@@ -7,6 +7,7 @@ import android.util.TypedValue
 import android.view.View
 import androidx.annotation.ColorInt
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.countries.core.themes.Theme
 import com.countries.core.themes.ThemePreferences
 
 fun View.visibleOrGone(isVisible: Boolean) {
@@ -51,6 +52,17 @@ fun Activity.setStatusBarColor(@ColorInt color: Int) {
 fun Activity.applyTheme() {
     val themePreferences = ThemePreferences(this)
     setTheme(themePreferences.getTheme().styleId)
+}
+
+fun Activity.toggleTheme() {
+    val themePreferences = ThemePreferences(this)
+    val theme = themePreferences.getTheme()
+    when (theme == Theme.LIGHT) {
+        true -> themePreferences.setTheme(Theme.DARK)
+        else -> themePreferences.setTheme(Theme.LIGHT)
+    }
+
+    recreate()
 }
 
 fun Activity.getColorFromTheme(attribute: Int): Int {

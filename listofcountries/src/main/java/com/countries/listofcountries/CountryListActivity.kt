@@ -84,6 +84,7 @@ class CountryListActivity : DaggerAppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.theme_toggle -> {
+                toggleTheme()
                 true
             }
             else -> super.onOptionsItemSelected(item)
