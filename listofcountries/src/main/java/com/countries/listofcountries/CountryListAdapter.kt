@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.squareup.picasso.Picasso
+import com.countries.core.loadImage
 import kotlinx.android.synthetic.main.country_card.view.*
 
 class CountryListAdapter(
@@ -23,9 +23,7 @@ class CountryListAdapter(
             nameTextView.text = country.name
             continentTextView.text = country.continent
             populationTextView.text = country.population
-            Picasso.with(context)
-                .load(country.flagUrl)
-                .into(flagImageView)
+            context.loadImage(country.flagUrl, flagImageView)
             setOnClickListener { onClick(country.name) }
         }
     }

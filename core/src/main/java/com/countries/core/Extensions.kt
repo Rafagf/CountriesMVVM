@@ -1,14 +1,17 @@
 package com.countries.core
 
 import android.app.Activity
+import android.content.Context
 import android.content.res.TypedArray
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.View
+import android.widget.ImageView
 import androidx.annotation.ColorInt
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.countries.core.themes.Theme
 import com.countries.core.themes.ThemePreferences
+import com.squareup.picasso.Picasso
 
 fun View.visibleOrGone(isVisible: Boolean) {
     if (isVisible) {
@@ -71,5 +74,11 @@ fun Activity.getColorFromTheme(attribute: Int): Int {
     val color = a.getColor(0, 0)
     a.recycle()
     return color
+}
+
+fun Context.loadImage(url: String, view: ImageView) {
+    Picasso.with(this)
+        .load(url)
+        .into(view)
 }
 
