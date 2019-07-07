@@ -24,6 +24,7 @@ class CountryDetailedActivity : DaggerAppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         applyTheme()
+        setStatusBarColor(getColorFromTheme(R.attr.countriesColorPrimary))
         setContentView(R.layout.activity_country_detailed)
         overridePendingTransition(R.anim.slide_in_up, R.anim.stay)
         setToolbar()

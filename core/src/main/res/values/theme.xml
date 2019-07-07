@@ -30,9 +30,6 @@
         <item name="countriesToolbarColorText">@color/white</item>
         <item name="countriesFlagPlaceHolderBackground">@color/grey_primary</item>
         <item name="countriesFloatingButtonBackground">@color/white</item>
-
-
-
     </style>
 
 </resources>
