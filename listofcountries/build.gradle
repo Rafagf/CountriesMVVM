@@ -53,9 +53,6 @@ dependencies {
     //Search
     implementation 'com.miguelcatalan:materialsearchview:1.4.0'
 
-    //Image loader
-    implementation 'com.squareup.picasso:picasso:2.5.2'
-
     //Testing
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0"
     testImplementation 'junit:junit:4.12'

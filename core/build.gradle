@@ -68,6 +68,9 @@ dependencies {
     kaptAndroidTest 'com.google.dagger:dagger-compiler:2.21'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
+    //Image Loader
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+
     //Testing
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0"
     testImplementation 'junit:junit:4.12'
