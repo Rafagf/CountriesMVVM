@@ -7,12 +7,13 @@ Buzz-Words used in the project: **Modularization, Dagger-Android, ViewModel, Ret
 It supports **Dark&Light** modes thanks to theming the app. 
 
 
-## GIF's
+## Videos
 
 Light Theme | Dark Theme | Toggling Themes
 :-------------------------:|:-------------------------:|:-------------------------:
 ![light-theme](https://user-images.githubusercontent.com/6362660/60772139-e9b09a00-a0e9-11e9-9e28-f29da8d1b094.gif) | ![dark-theme](https://user-images.githubusercontent.com/6362660/60772140-ea493080-a0e9-11e9-94f2-39280b5f63a2.gif)| ![toggling-themes](https://user-images.githubusercontent.com/6362660/60771589-56c03180-a0e2-11e9-954a-93eee49d20e0.gif)
 
+(*waaay smother in a device, GIF's made the videos sluggish!*
 
 ## Screenshots
 
