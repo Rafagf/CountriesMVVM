@@ -1,5 +1,6 @@
 package com.countries.listofcountries
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.countries.core.models.Country
@@ -15,7 +16,7 @@ class CountryListViewModel @Inject constructor(
 
 ) : ViewModel() {
 
-    val liveData = MutableLiveData<ViewState>(ViewState.Empty)
+    private val liveData = MutableLiveData<ViewState>(ViewState.Empty)
     private val compositeDisposable = CompositeDisposable()
 
     sealed class Event {
@@ -32,6 +33,8 @@ class CountryListViewModel @Inject constructor(
             val countriesToDisplay: List<CountryListModel>
         ) : ViewState()
     }
+
+    fun getLiveData(): LiveData<ViewState> = liveData
 
     fun start() {
         compositeDisposable.add(

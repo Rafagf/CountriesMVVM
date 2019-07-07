@@ -1,5 +1,6 @@
 package com.countries.detailedcountry
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.countries.core.models.Country
@@ -14,7 +15,7 @@ class CountryDetailedViewModel @Inject constructor(
     private val mapper: CountryDetailedModelMapper
 ) : ViewModel() {
 
-    val liveData = MutableLiveData<ViewState>(ViewState.Empty)
+    private val liveData = MutableLiveData<ViewState>(ViewState.Empty)
     private val compositeDisposable = CompositeDisposable()
 
     sealed class Event {
@@ -31,6 +32,8 @@ class CountryDetailedViewModel @Inject constructor(
             val borders: CountryBordersModel? = null
         ) : ViewState()
     }
+
+    fun getLiveData(): LiveData<ViewState> = liveData
 
     fun start(name: String) {
         fetchCountry(name)

@@ -36,7 +36,7 @@ class CountryListActivity : DaggerAppCompatActivity() {
         setErrorView()
 
         viewModel = ViewModelProviders.of(this, viewModelFactory)[CountryListViewModel::class.java]
-        viewModel.liveData.observe(this, Observer {
+        viewModel.getLiveData().observe(this, Observer {
             when (it) {
                 is CountryListViewModel.ViewState.Loading -> {
                     searchView.enabled(false)
