@@ -41,7 +41,7 @@ class CountryDetailedViewModelTest {
     fun setUp() {
         whenever(useCase.getCountry(COUNTRY_NAME)).thenReturn(Single.never())
         whenever(useCase.getBorderCountries(COUNTRY_NAME)).thenReturn(Single.never())
-        viewModel.liveData.observeForever(observer)
+        viewModel.getLiveData().observeForever(observer)
     }
 
     @Test

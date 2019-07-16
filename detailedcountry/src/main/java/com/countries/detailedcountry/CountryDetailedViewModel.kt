@@ -44,7 +44,6 @@ class CountryDetailedViewModel @Inject constructor(
         compositeDisposable.add(
             useCase.getCountry(name)
                 .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
                 .map { country ->
                     createNextState(
                         event = Event.CountryFetched(country),
