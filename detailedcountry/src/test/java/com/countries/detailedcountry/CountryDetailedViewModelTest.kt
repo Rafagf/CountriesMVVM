@@ -22,14 +22,11 @@ private val COUNTRY_BORDERS = CountryBordersModel(listOf(BORDER, BORDER_2))
 
 class CountryDetailedViewModelTest {
 
-    companion object {
-        @ClassRule
-        @JvmField
-        val schedulers = RxImmediateSchedulerRule()
-    }
-
     @get:Rule
     val instantTaskExecutorRule: TestRule = InstantTaskExecutorRule()
+
+    @get:Rule
+    val schedulers = RxImmediateSchedulerRule()
 
     private val useCase = mock<CountryDetailedUseCase>()
     private val mapper = mock<CountryDetailedModelMapper>()
@@ -41,7 +38,7 @@ class CountryDetailedViewModelTest {
     fun setUp() {
         whenever(useCase.getCountry(COUNTRY_NAME)).thenReturn(Single.never())
         whenever(useCase.getBorderCountries(COUNTRY_NAME)).thenReturn(Single.never())
-        viewModel.liveData.observeForever(observer)
+        viewModel.getLiveData().observeForever(observer)
     }
 
     @Test

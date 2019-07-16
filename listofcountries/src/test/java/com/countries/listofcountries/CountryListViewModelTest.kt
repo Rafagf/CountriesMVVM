@@ -21,12 +21,6 @@ private val COUNTRY_LIST_MODEL_FIXTURE_2 = CountryListModelFixture.aCountry(COUN
 
 class CountryListViewModelTest {
 
-    companion object {
-        @ClassRule
-        @JvmField
-        val schedulers = RxImmediateSchedulerRule()
-    }
-
     @get:Rule
     val instantTaskExecutorRule: TestRule = InstantTaskExecutorRule()
 
@@ -41,7 +35,7 @@ class CountryListViewModelTest {
 
     @Before
     fun setUp() {
-        viewModel.liveData.observeForever(observer)
+        viewModel.getLiveData().observeForever(observer)
     }
 
     @Test
@@ -89,15 +83,16 @@ class CountryListViewModelTest {
 
     @Test
     fun `given content state when user searches for countries then show filtered list`() {
-        viewModel.liveData.value = CountryListViewModel.ViewState.Content(
-            baseCountries = listOf(COUNTRY_LIST_MODEL_FIXTURE_1, COUNTRY_LIST_MODEL_FIXTURE_2),
-            countriesToDisplay = listOf(COUNTRY_LIST_MODEL_FIXTURE_1, COUNTRY_LIST_MODEL_FIXTURE_2)
-        )
+        whenever(useCase.getCountries()).thenReturn(Single.just(listOf(COUNTRY_FIXTURE_1, COUNTRY_FIXTURE_2)))
+        whenever(mapper.map(listOf(COUNTRY_FIXTURE_1, COUNTRY_FIXTURE_2)))
+            .thenReturn(listOf(COUNTRY_LIST_MODEL_FIXTURE_1, COUNTRY_LIST_MODEL_FIXTURE_2))
+        viewModel.start()
 
         viewModel.onCountriesFiltered(COUNTRY_NAME_1)
 
         observer.assertValues(
             CountryListViewModel.ViewState.Empty,
+            CountryListViewModel.ViewState.Loading,
             CountryListViewModel.ViewState.Content(
                 baseCountries = listOf(COUNTRY_LIST_MODEL_FIXTURE_1, COUNTRY_LIST_MODEL_FIXTURE_2),
                 countriesToDisplay = listOf(COUNTRY_LIST_MODEL_FIXTURE_1, COUNTRY_LIST_MODEL_FIXTURE_2)

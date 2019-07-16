@@ -57,7 +57,7 @@ class CountryDetailedViewModel @Inject constructor(
                     Observable.just(ViewState.Error)
                 }
                 .subscribe {
-                    liveData.value = it
+                    liveData.postValue(it)
                 }
         )
     }
