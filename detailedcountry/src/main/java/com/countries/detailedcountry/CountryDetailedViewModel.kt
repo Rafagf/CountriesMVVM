@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.countries.core.models.Country
-import io.reactivex.Observable
+import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -44,20 +44,21 @@ class CountryDetailedViewModel @Inject constructor(
         compositeDisposable.add(
             useCase.getCountry(name)
                 .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .map { country ->
                     createNextState(
                         event = Event.CountryFetched(country),
                         currentState = liveData.value!!
                     )
                 }
-                .toObservable()
-                .startWith(ViewState.Loading())
-                .onErrorResumeNext { _: Throwable ->
-                    Observable.just(ViewState.Error)
+                .doOnSubscribe {
+                    liveData.postValue(ViewState.Loading())
                 }
-                .subscribe {
-                    liveData.value = it
-                }
+                .subscribe({
+                    liveData.postValue(it)
+                }, {
+                    liveData.postValue(ViewState.Error)
+                })
         )
     }
 
