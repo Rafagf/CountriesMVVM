@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 class CountryDetailedViewModel @Inject constructor(
     private val useCase: CountryDetailedUseCase,
-    private val mapper: CountryDetailedModelMapper
+    private val reducer: CountryDetailedViewModelReducer
 ) : ViewModel() {
 
     private val liveData = MutableLiveData<ViewState>(ViewState.Empty)
@@ -46,7 +46,7 @@ class CountryDetailedViewModel @Inject constructor(
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .map { country ->
-                    createNextState(
+                    reducer.createNextState(
                         event = Event.CountryFetched(country),
                         currentState = liveData.value!!
                     )
@@ -68,7 +68,7 @@ class CountryDetailedViewModel @Inject constructor(
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .map {
-                    createNextState(
+                    reducer.createNextState(
                         event = Event.BordersFetched(it),
                         currentState = liveData.value!!
                     )
@@ -78,55 +78,6 @@ class CountryDetailedViewModel @Inject constructor(
                     liveData.value = it
                 }
         )
-    }
-
-    private fun createNextState(event: Event, currentState: ViewState): ViewState {
-        return when (event) {
-            is Event.CountryFetched -> createCountryState(event, currentState)
-            is Event.BordersFetched -> createBordersState(event, currentState)
-        }
-    }
-
-    private fun createCountryState(
-        event: Event.CountryFetched,
-        currentState: ViewState
-    ): ViewState {
-        return when (currentState) {
-            is ViewState.Loading -> {
-                ViewState.Content(
-                    country = mapper.map(event.payload),
-                    borders = currentState.content?.borders
-                )
-            }
-            is ViewState.Content -> {
-                ViewState.Content(
-                    country = mapper.map(event.payload),
-                    borders = currentState.borders
-                )
-            }
-            else -> ViewState.Empty
-        }
-    }
-
-    private fun createBordersState(
-        event: Event.BordersFetched,
-        currentState: ViewState
-    ): ViewState {
-        return when (currentState) {
-            is ViewState.Loading -> {
-                ViewState.Content(
-                    country = currentState.content?.country,
-                    borders = event.payload
-                )
-            }
-            is ViewState.Content -> {
-                ViewState.Content(
-                    country = currentState.country,
-                    borders = event.payload
-                )
-            }
-            else -> ViewState.Empty
-        }
     }
 
     override fun onCleared() {

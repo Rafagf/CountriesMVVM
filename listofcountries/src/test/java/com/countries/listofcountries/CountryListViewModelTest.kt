@@ -2,6 +2,7 @@ package com.countries.listofcountries
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
+import com.countries.listofcountries.dagger.CountryListViewModelReducer
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
 import io.reactivex.Single
@@ -28,8 +29,8 @@ class CountryListViewModelTest {
 
     private val useCase = mock<CountryListUseCase>()
     private val mapper = mock<CountryListModelMapper>()
-
-    private val viewModel = CountryListViewModel(useCase, mapper)
+    private val reducer = CountryListViewModelReducer(mapper)
+    private val viewModel = CountryListViewModel(useCase, reducer)
     private val observer: TestObserver<CountryListViewModel.ViewState> = TestObserver()
 
     @Before

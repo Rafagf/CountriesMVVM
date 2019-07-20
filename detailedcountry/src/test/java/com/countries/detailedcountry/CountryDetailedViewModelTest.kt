@@ -33,8 +33,8 @@ class CountryDetailedViewModelTest {
 
     private val useCase = mock<CountryDetailedUseCase>()
     private val mapper = mock<CountryDetailedModelMapper>()
-
-    private val viewModel = CountryDetailedViewModel(useCase, mapper)
+    private val reducer = CountryDetailedViewModelReducer(mapper)
+    private val viewModel = CountryDetailedViewModel(useCase, reducer)
     private val observer: TestObserver<CountryDetailedViewModel.ViewState> = TestObserver()
 
     @Before
