@@ -1,11 +1,10 @@
-package com.countries.listofcountries.dagger
+package com.countries.listofcountries
 
-import com.countries.listofcountries.CountryListModelMapper
-import com.countries.listofcountries.CountryListViewModel
+import android.content.res.Resources
 import javax.inject.Inject
 
 class CountryListViewModelReducer @Inject constructor(
-    private val mapper: CountryListModelMapper
+    private val resources: Resources
 ) {
 
     fun createNextViewState(
@@ -35,7 +34,7 @@ class CountryListViewModelReducer @Inject constructor(
     }
 
     private fun createCountriesFetchedState(event: CountryListViewModel.Event.CountriesFetched): CountryListViewModel.ViewState.Content {
-        val countries = mapper.map(event.payload)
+        val countries = event.payload.map(resources)
         return CountryListViewModel.ViewState.Content(baseCountries = countries, countriesToDisplay = countries)
     }
 }
