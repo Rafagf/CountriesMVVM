@@ -1,10 +1,9 @@
 package com.countries.detailedcountry
 
+import android.content.res.Resources
 import javax.inject.Inject
 
-class CountryDetailedViewModelReducer @Inject constructor(
-    private val mapper: CountryDetailedModelMapper
-) {
+class CountryDetailedViewModelReducer @Inject constructor(val resources: Resources) {
 
     fun createNextState(
         event: CountryDetailedViewModel.Event,
@@ -23,13 +22,13 @@ class CountryDetailedViewModelReducer @Inject constructor(
         return when (currentState) {
             is CountryDetailedViewModel.ViewState.Loading -> {
                 CountryDetailedViewModel.ViewState.Content(
-                    country = mapper.map(event.payload),
+                    country = event.payload.map(resources),
                     borders = currentState.content?.borders
                 )
             }
             is CountryDetailedViewModel.ViewState.Content -> {
                 CountryDetailedViewModel.ViewState.Content(
-                    country = mapper.map(event.payload),
+                    country = event.payload.map(resources),
                     borders = currentState.borders
                 )
             }

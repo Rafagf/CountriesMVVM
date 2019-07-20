@@ -1,5 +1,6 @@
 package com.countries.detailedcountry
 
+import android.content.res.Resources
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import com.nhaarman.mockitokotlin2.mock
@@ -32,16 +33,24 @@ class CountryDetailedViewModelTest {
     val instantTaskExecutorRule: TestRule = InstantTaskExecutorRule()
 
     private val useCase = mock<CountryDetailedUseCase>()
-    private val mapper = mock<CountryDetailedModelMapper>()
-    private val reducer = CountryDetailedViewModelReducer(mapper)
+    private val resources = mock<Resources>()
+    private val reducer = CountryDetailedViewModelReducer(resources)
     private val viewModel = CountryDetailedViewModel(useCase, reducer)
     private val observer: TestObserver<CountryDetailedViewModel.ViewState> = TestObserver()
 
     @Before
     fun setUp() {
+        mockResources()
         whenever(useCase.getCountry(COUNTRY_NAME)).thenReturn(Single.never())
         whenever(useCase.getBorderCountries(COUNTRY_NAME)).thenReturn(Single.never())
         viewModel.getLiveData().observeForever(observer)
+    }
+
+    private fun mockResources() {
+        whenever(resources.getText(R.string.demonym)).thenReturn("Demonym")
+        whenever(resources.getText(R.string.native_name)).thenReturn("Native name")
+        whenever(resources.getText(R.string.area)).thenReturn("Area")
+        whenever(resources.getText(R.string.population)).thenReturn("Population")
     }
 
     @Test
@@ -70,7 +79,6 @@ class CountryDetailedViewModelTest {
     @Test
     fun `when country fetched then emits country content view state`() {
         whenever(useCase.getCountry(COUNTRY_NAME)).thenReturn(Single.just(COUNTRY_FIXTURE))
-        whenever(mapper.map(COUNTRY_FIXTURE)).thenReturn(COUNTRY_DETAILED_MODEL_FIXTURE)
 
         viewModel.start(COUNTRY_NAME)
 
@@ -103,7 +111,6 @@ class CountryDetailedViewModelTest {
     @Test
     fun `when both borders and country fetched then emits full content view state`() {
         whenever(useCase.getCountry(COUNTRY_NAME)).thenReturn(Single.just(COUNTRY_FIXTURE))
-        whenever(mapper.map(COUNTRY_FIXTURE)).thenReturn(COUNTRY_DETAILED_MODEL_FIXTURE)
         whenever(useCase.getBorderCountries(COUNTRY_NAME)).thenReturn(Single.just(COUNTRY_BORDERS))
 
         viewModel.start(COUNTRY_NAME)
