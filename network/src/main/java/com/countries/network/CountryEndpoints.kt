@@ -1,6 +1,5 @@
-package com.countries.core.api
+package com.countries.network
 
-import com.countries.core.models.CountryApi
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Path

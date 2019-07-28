@@ -1,7 +1,6 @@
-package com.countries.core.db
+package com.countries.persistency
 
 import androidx.room.*
-import com.countries.core.models.CountryDB
 import io.reactivex.Maybe
 
 @Dao

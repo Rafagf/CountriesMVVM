@@ -1,4 +1,4 @@
-package com.countries.core.models
+package com.countries.network
 
 import com.squareup.moshi.Json
 

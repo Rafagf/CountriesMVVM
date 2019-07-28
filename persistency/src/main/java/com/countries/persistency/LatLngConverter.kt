@@ -1,7 +1,6 @@
-package com.countries.core.db
+package com.countries.persistency
 
 import androidx.room.TypeConverter
-import com.countries.core.models.LatLng
 
 
 class LatLngConverter {

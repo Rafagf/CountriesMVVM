@@ -2,8 +2,8 @@ package com.countries.dagger
 
 import android.app.Application
 import com.countries.CountriesApplication
-import com.countries.core.dagger.NetworkModule
-import com.countries.core.dagger.PersistencyModule
+import com.countries.network.NetworkModule
+import com.countries.persistency.PersistencyModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector

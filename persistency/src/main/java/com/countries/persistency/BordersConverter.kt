@@ -1,4 +1,4 @@
-package com.countries.core.db
+package com.countries.persistency
 
 import androidx.room.TypeConverter
 

@@ -1,10 +1,10 @@
-package com.countries.core.models
+package com.countries.persistency
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import androidx.room.TypeConverters
-import com.countries.core.db.BordersConverter
-import com.countries.core.db.LatLngConverter
+import com.countries.persistency.BordersConverter
+import com.countries.persistency.LatLngConverter
 
 
 @Entity
@@ -18,10 +18,10 @@ data class CountryDB(
     val population: String? = null,
     val area: String?,
     val demonym: String?,
-    @TypeConverters(LatLngConverter::class)
+    @TypeConverters(com.countries.persistency.LatLngConverter::class)
     val latlng: LatLng,
     val continent: String?,
     val region: String?,
-    @TypeConverters(BordersConverter::class)
+    @TypeConverters(com.countries.persistency.BordersConverter::class)
     val borderCountryAlphaList: List<String> = listOf()
 )

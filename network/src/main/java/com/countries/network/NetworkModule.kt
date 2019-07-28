@@ -1,6 +1,5 @@
-package com.countries.core.dagger
+package com.countries.network
 
-import com.countries.core.api.CountryEndpoints
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient

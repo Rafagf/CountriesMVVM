@@ -1,1 +1,1 @@
-include ':app', ':core', ':listofcountries', ':detailedcountry', ':network'
+include ':app', ':core', ':listofcountries', ':detailedcountry', ':network', ':persistency'

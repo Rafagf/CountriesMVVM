@@ -95,4 +95,5 @@ dependencies {
     implementation project(path: ':listofcountries')
     implementation project(path: ':core')
     compile project(path: ':network')
+    compile project(path: ':persistency')
 }
