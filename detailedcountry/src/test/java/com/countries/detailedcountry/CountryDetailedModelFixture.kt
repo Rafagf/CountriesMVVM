@@ -6,12 +6,12 @@ object CountryDetailedModelFixture {
     fun aCountry(name: String = "Spain"): CountryDetailedModel {
         return CountryDetailedModel(
             name = name,
-            flag = "flag",
-            nativeName = "España",
+            flag = "http://www.geonames.org/flags/x/es.gif",
+            nativeName = "Native name: España",
             capital = "Madrid",
-            population = "10000",
-            area = "20000",
-            demonym = "Spaniards",
+            population = "Population: 10K",
+            area = "Area: 20 km²",
+            demonym = "Demonym: Spaniards",
             latLng = LatLng(100.0, 100.0),
             continent = "Europe",
             region = "South-Europe"

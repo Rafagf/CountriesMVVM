@@ -4,8 +4,8 @@ object CountryFixture {
     fun aCountry(name: String = "Spain", alpha3: String = "SPA"): Country {
         return Country(
             name = name,
+            alpha3Code = alpha3,
             nativeName = "España",
-            alpha3Code = "SPA",
             alpha2Code = "ES",
             capital = "Madrid",
             population = "10000",
