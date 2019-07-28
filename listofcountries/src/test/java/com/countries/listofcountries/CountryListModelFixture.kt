@@ -1,12 +1,17 @@
 package com.countries.listofcountries
 
 object CountryListModelFixture {
-    fun aCountry(name: String = "Spain"): CountryListModel {
+    fun aCountry(
+        name: String,
+        flagUrl: String,
+        population: String,
+        continent: String = "Europe"
+    ): CountryListModel {
         return CountryListModel(
             name = name,
-            flagUrl = "url",
-            population = "10000",
-            continent = "Europe"
+            flagUrl = flagUrl,
+            population = population,
+            continent = continent
         )
     }
 }
