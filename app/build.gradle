@@ -49,6 +49,7 @@ dependencies {
 
     implementation project(path: ':listofcountries')
     implementation project(path: ':detailedcountry')
+    implementation project(path: ':core')
     implementation project(path: ':network')
     implementation project(path: ':navigator')
 

@@ -2,6 +2,7 @@ package com.countries.dagger
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.countries.detailedcountry.CountryDetailedViewModel
 import com.countries.listofcountries.CountryListViewModel
 import dagger.Binds
 import dagger.MapKey
@@ -22,10 +23,10 @@ abstract class ViewModelModule {
     @ViewModelKey(CountryListViewModel::class)
     internal abstract fun countryListViewModel(viewModel: CountryListViewModel): ViewModel
 
-//    @Binds
-//    @IntoMap
-//    @ViewModelKey(CountryDetailedViewModel::class)
-//    internal abstract fun countryDetailedViewModel(viewModel: CountryDetailedViewModel): ViewModel
+    @Binds
+    @IntoMap
+    @ViewModelKey(CountryDetailedViewModel::class)
+    internal abstract fun countryDetailedViewModel(viewModel: CountryDetailedViewModel): ViewModel
 }
 
 class ViewModelFactory @Inject constructor(private val viewModels: MutableMap<Class<out ViewModel>, Provider<ViewModel>>) :

@@ -1,4 +1,4 @@
-package com.countries.listofcountries.repository
+package com.countries.core.repository
 
 import com.countries.core.models.Country
 import com.countries.core.models.LatLng
