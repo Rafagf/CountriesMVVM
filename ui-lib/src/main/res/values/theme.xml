@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+    </style>
+
+    <style name="AppTheme.NoActionBar" parent="AppTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Dark">
+        <item name="android:colorControlActivated">@color/white</item>
+        <item name="countriesColorPrimary">@color/black_primary</item>
+        <item name="countriesColorSecondary">@color/black_secondary</item>
+        <item name="countriesColorBackground">@color/black_primary</item>
+        <item name="countriesColorText">@color/grey_primary</item>
+        <item name="countriesToolbarColorText">@color/grey_primary</item>
+        <item name="countriesFlagPlaceHolderBackground">@color/black_primary</item>
+        <item name="countriesFloatingButtonBackground">@color/white</item>
+    </style>
+
+    <style name="Light">
+        <item name="android:colorControlActivated">@color/purple</item>
+        <item name="countriesColorPrimary">@color/purple</item>
+        <item name="countriesColorSecondary">@color/white</item>
+        <item name="countriesColorBackground">@color/white</item>
+        <item name="countriesColorText">@color/black_primary</item>
+        <item name="countriesToolbarColorText">@color/white</item>
+        <item name="countriesFlagPlaceHolderBackground">@color/grey_primary</item>
+        <item name="countriesFloatingButtonBackground">@color/white</item>
+    </style>
+</resources>

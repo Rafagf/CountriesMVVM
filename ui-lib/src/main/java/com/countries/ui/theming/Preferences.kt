@@ -1,4 +1,4 @@
-package com.countries.core.themes
+package com.countries.ui.theming
 
 import android.content.Context
 import javax.inject.Inject
@@ -7,7 +7,7 @@ private const val COUNTRIES_PREFERENCES = "countries_preferences"
 private const val PREF_KEY_THEME = "pref_theme"
 private val DEFAULT_THEME = Theme.LIGHT
 
-class ThemePreferences @Inject constructor(context: Context) {
+class Preferences @Inject constructor(context: Context) {
 
     private val userThemePreferences by lazy {
         context.getSharedPreferences(COUNTRIES_PREFERENCES, Context.MODE_PRIVATE)

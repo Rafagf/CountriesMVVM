@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.countries.core.loadImage
+import com.countries.ui.loadImage
 import kotlinx.android.synthetic.main.country_card.view.*
 
 class CountryListAdapter(

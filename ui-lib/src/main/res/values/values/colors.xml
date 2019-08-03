@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="blue_sky">#4397DA</color>
+    <color name="blue_dark">#040E50</color>
+    <color name="purple">#741DDB</color>
+    <color name="white">#FFFFFF</color>
+    <color name="grey_primary">#E1E1E1</color>
+    <color name="grey_secondary">#8B8888</color>
+    <color name="black_primary">#1D1D1D</color>
+    <color name="black_secondary">#131313</color>
+    <color name="accent">@color/purple</color>
+
+</resources>

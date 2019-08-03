@@ -1,4 +1,4 @@
-package com.countries.core.views
+package com.countries.ui.views
 
 import android.content.Context
 import android.graphics.drawable.Drawable
@@ -6,8 +6,8 @@ import android.util.AttributeSet
 import android.view.Gravity
 import android.view.View
 import android.widget.LinearLayout
-import com.countries.core.R
-import com.countries.core.readAttributes
+import com.countries.ui.R
+import com.countries.ui.readAttributes
 import kotlinx.android.synthetic.main.error_view.view.*
 
 class ErrorView @JvmOverloads constructor(

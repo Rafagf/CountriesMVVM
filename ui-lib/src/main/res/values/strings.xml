@@ -1,0 +1,5 @@
+<resources>
+    <string name="refresh">Refresh</string>
+    <string name="error_body">Are you connected to the internet?</string>
+    <string name="error_header">Oops! Something went wrong</string>
+</resources>

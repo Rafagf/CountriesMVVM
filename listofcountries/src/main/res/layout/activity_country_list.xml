@@ -71,7 +71,7 @@
             app:backgroundTint="?attr/countriesFloatingButtonBackground"
             app:fabSize="mini"/>
 
-    <com.countries.core.views.ErrorView
+    <com.countries.ui.views.ErrorView
             android:id="@+id/errorView"
             android:visibility="gone"
             android:layout_width="match_parent"

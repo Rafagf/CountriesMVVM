@@ -10,6 +10,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.countries.core.*
 import com.countries.navigator.AppNavigator
+import com.countries.ui.applyTheme
+import com.countries.ui.getColorFromTheme
+import com.countries.ui.toggleTheme
 import com.miguelcatalan.materialsearchview.MaterialSearchView
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_country_list.*

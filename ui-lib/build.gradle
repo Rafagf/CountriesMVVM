@@ -1,18 +1,19 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 apply from: '../detekt.gradle'
 
 android {
     compileSdkVersion 28
 
+
     defaultConfig {
-        minSdkVersion 23
+        minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         android.defaultConfig.javaCompileOptions.annotationProcessorOptions.includeCompileClasspath = true
     }
 
@@ -33,19 +34,6 @@ dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
-    implementation project(path: ':network')
-    implementation project(path: ':database')
-
-    //Android
-    implementation 'androidx.recyclerview:recyclerview:1.0.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'com.android.support:appcompat-v7:28.0.0'
-
-    //Lifecycle
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0-alpha04'
-    implementation 'androidx.lifecycle:lifecycle-compiler:2.1.0-alpha04'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel:2.1.0-alpha04'
-
     //Dagger
     implementation 'com.google.dagger:dagger-android:2.21'
     implementation 'com.google.dagger:dagger-android:2.21'
@@ -54,12 +42,8 @@ dependencies {
     kapt 'com.google.dagger:dagger-android-processor:2.21'
     kaptAndroidTest 'com.google.dagger:dagger-compiler:2.21'
 
-    //Testing
-    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0"
-    testImplementation 'junit:junit:4.12'
-    testImplementation 'org.mockito:mockito-inline:2.13.0'
-    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
-    testImplementation 'junit:junit:4.12'
+    //Image Loader
+    implementation 'com.squareup.picasso:picasso:2.5.2'
 }
 
 repositories {

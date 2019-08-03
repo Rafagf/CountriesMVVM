@@ -4,8 +4,14 @@ import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import com.countries.core.*
+import com.countries.core.gone
+import com.countries.core.setStatusBarColor
+import com.countries.core.visible
+import com.countries.core.visibleOrGone
 import com.countries.navigator.AppNavigator
+import com.countries.ui.applyTheme
+import com.countries.ui.getColorFromTheme
+import com.countries.ui.loadImage
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.LatLng
