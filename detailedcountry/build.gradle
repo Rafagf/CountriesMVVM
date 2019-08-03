@@ -66,4 +66,5 @@ dependencies {
     testImplementation 'org.assertj:assertj-core:3.10.0'
 
     implementation project(path: ':core')
+    compile project(path: ':navigator')
 }

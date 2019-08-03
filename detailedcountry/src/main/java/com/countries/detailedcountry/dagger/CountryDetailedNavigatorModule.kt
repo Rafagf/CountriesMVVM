@@ -2,8 +2,8 @@ package com.countries.detailedcountry.dagger
 
 import android.content.Context
 import android.content.Intent
-import com.countries.core.AppNavigator
 import com.countries.detailedcountry.CountryDetailedActivity
+import com.countries.navigator.AppNavigator
 import dagger.Module
 import dagger.Provides
 

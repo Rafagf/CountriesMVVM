@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.countries.core.*
+import com.countries.navigator.AppNavigator
 import com.miguelcatalan.materialsearchview.MaterialSearchView
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_country_list.*
@@ -18,6 +19,9 @@ class CountryListActivity : DaggerAppCompatActivity() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    @Inject
+    lateinit var navigator: AppNavigator
 
     lateinit var viewModel: CountryListViewModel
 
@@ -90,7 +94,7 @@ class CountryListActivity : DaggerAppCompatActivity() {
 
     private fun setCountryList() {
         countriesRecyclerView.adapter = CountryListAdapter(onClick = {
-//            navigator.countryDetailedNavigator.open(this, it)
+            navigator.countryDetailedNavigator.open(this, it)
         })
     }
 
