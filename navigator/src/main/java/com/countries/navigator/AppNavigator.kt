@@ -1,7 +1,6 @@
-package com.countries.core
+package com.countries.navigator
 
 import android.content.Context
-import javax.inject.Inject
 
 class AppNavigator @Inject constructor(
     val countryListNavigator: AppNavigator.CountryListNavigator,
