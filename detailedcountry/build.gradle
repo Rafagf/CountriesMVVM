@@ -8,8 +8,6 @@ apply from: '../detekt.gradle'
 android {
     compileSdkVersion 28
 
-
-
     defaultConfig {
         minSdkVersion 23
         targetSdkVersion 28

@@ -1,25 +1,25 @@
-package com.countries.core.repositories
+package com.countries.listofcountries.repository
 
 import com.countries.core.models.Country
 import io.reactivex.Single
 import javax.inject.Inject
 
-//class CountriesRepository @Inject constructor(
-//    private val remoteDataSource: CountriesRemoteDataSource
-//) {
-//    fun getCountries(): Single<List<Country>> {
-//        return remoteDataSource.getCountries()
-//    }
-//
-//    fun getCountryByName(name: String): Single<Country> {
-//        return remoteDataSource.getCountryByName(name)
-//    }
-//
-//    fun getCountryByAlpha3(alpha3: String): Single<Country> {
-//        return remoteDataSource.getCountryByAlpha3(alpha3)
-//    }
-//}
-//
+class CountriesRepository @Inject constructor(
+    private val remoteDataSource: CountriesRemoteDataSource
+) {
+    fun getCountries(): Single<List<Country>> {
+        return remoteDataSource.getCountries()
+    }
+
+    fun getCountryByName(name: String): Single<Country> {
+        return remoteDataSource.getCountryByName(name)
+    }
+
+    fun getCountryByAlpha3(alpha3: String): Single<Country> {
+        return remoteDataSource.getCountryByAlpha3(alpha3)
+    }
+}
+
 //class CountriesRepository @Inject constructor(
 //    private val remoteDataSource: CountriesRemoteDataSource,
 //    private val localDataSource: CountriesLocalDataSource

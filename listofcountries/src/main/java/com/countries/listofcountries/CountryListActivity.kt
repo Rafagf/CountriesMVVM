@@ -19,9 +19,6 @@ class CountryListActivity : DaggerAppCompatActivity() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    @Inject
-    lateinit var navigator: AppNavigator
-
     lateinit var viewModel: CountryListViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -93,7 +90,7 @@ class CountryListActivity : DaggerAppCompatActivity() {
 
     private fun setCountryList() {
         countriesRecyclerView.adapter = CountryListAdapter(onClick = {
-            navigator.countryDetailedNavigator.open(this, it)
+//            navigator.countryDetailedNavigator.open(this, it)
         })
     }
 

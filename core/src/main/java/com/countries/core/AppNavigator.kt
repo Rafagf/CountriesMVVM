@@ -4,8 +4,7 @@ import android.content.Context
 import javax.inject.Inject
 
 class AppNavigator @Inject constructor(
-    val countryListNavigator: AppNavigator.CountryListNavigator,
-    val countryDetailedNavigator: AppNavigator.CountryDetailedNavigator
+    val countryListNavigator: AppNavigator.CountryListNavigator
 ) {
 
     interface CountryListNavigator {

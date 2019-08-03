@@ -1,6 +1,6 @@
 package com.countries.listofcountries
 
-import com.countries.core.repositories.CountriesRepository
+import com.countries.listofcountries.repository.CountriesRepository
 import javax.inject.Inject
 
 class CountryListUseCase @Inject constructor(private val repository: CountriesRepository) {

@@ -1,8 +1,8 @@
-package com.countries.core.mappers
+package com.countries.listofcountries.repository
 
 import com.countries.core.models.Country
-import com.countries.core.models.CountryApi
 import com.countries.core.models.LatLng
+import com.countries.network.CountryApi
 import javax.inject.Inject
 
 class CountryApiMapper @Inject constructor() {

@@ -60,6 +60,7 @@ dependencies {
     testImplementation 'androidx.arch.core:core-testing:2.0.0'
     testImplementation 'org.assertj:assertj-core:3.10.0'
 
+    compile project(path: ':network')
     implementation project(path: ':core')
 
 }

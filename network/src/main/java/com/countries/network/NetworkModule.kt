@@ -33,5 +33,5 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideCountryApi(): CountryEndpoints = retrofit.create(CountryEndpoints::class.java)
+    fun provideCountryEndpoints(): CountryEndpoints = retrofit.create(CountryEndpoints::class.java)
 }
