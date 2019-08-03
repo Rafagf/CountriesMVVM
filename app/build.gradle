@@ -51,6 +51,7 @@ dependencies {
     implementation project(path: ':detailedcountry')
     implementation project(path: ':core')
     implementation project(path: ':network')
+    implementation project(path: ':database')
     implementation project(path: ':navigator')
 
     //Android

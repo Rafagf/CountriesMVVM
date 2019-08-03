@@ -34,6 +34,7 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     implementation project(path: ':network')
+    implementation project(path: ':database')
 
     //Android
     implementation 'androidx.recyclerview:recyclerview:1.0.0'

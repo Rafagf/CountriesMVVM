@@ -5,7 +5,6 @@ import com.countries.network.CountryEndpoints
 import io.reactivex.Single
 import javax.inject.Inject
 
-
 class CountriesRemoteDataSource @Inject constructor(
     private val api: CountryEndpoints,
     private val mapper: CountryApiMapper

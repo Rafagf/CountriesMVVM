@@ -7,19 +7,19 @@ import dagger.Provides
 import javax.inject.Singleton
 
 @Module
-class PersistencyModule {
+class DatabaseModule {
 
     @Provides
     @Singleton
-    fun providesRoomDatabase(context: Context): com.countries.persistency.AppDatabase {
+    fun providesRoomDatabase(context: Context): AppDatabase {
         return Room.databaseBuilder(
             context,
-            com.countries.persistency.AppDatabase::class.java,
+            AppDatabase::class.java,
             "myDB"
         ).build()
     }
 
     @Provides
     @Singleton
-    fun providesCountryDao(db: com.countries.persistency.AppDatabase) = db.countryDao()
+    fun providesCountryDao(db: AppDatabase) = db.countryDao()
 }

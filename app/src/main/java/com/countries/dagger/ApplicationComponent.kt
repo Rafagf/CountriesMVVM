@@ -3,6 +3,7 @@ package com.countries.dagger
 import android.app.Application
 import com.countries.CountriesApplication
 import com.countries.network.NetworkModule
+import com.countries.persistency.DatabaseModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
@@ -14,6 +15,7 @@ import javax.inject.Singleton
     modules = [ApplicationModule::class,
         ActivityBindingModule::class,
         NetworkModule::class,
+        DatabaseModule::class,
         AppNavigatorModule::class,
         AndroidSupportInjectionModule::class]
 )
