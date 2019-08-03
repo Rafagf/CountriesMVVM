@@ -2,9 +2,9 @@ package com.countries.core.repository
 
 import com.countries.core.models.Country
 import com.countries.core.models.LatLng
-import com.countries.network.CountryApi
+import com.countries.persistency.CountryDB
 
-fun CountryApi.toCountry(): Country {
+fun CountryDB.toCountry(): Country {
     return run {
         Country(
             name = name,
@@ -15,7 +15,7 @@ fun CountryApi.toCountry(): Country {
             population = population,
             area = area,
             demonym = demonym,
-            latlng = getLatLng(latlng),
+            latlng = LatLng(latlng.lat, latlng.lng),
             continent = continent,
             region = region,
             borderCountryAlphaList = borderCountryAlphaList
@@ -23,23 +23,15 @@ fun CountryApi.toCountry(): Country {
     }
 }
 
-private fun getLatLng(latlng: List<Double>): LatLng {
-    return when {
-        latlng.isEmpty() -> LatLng(0.0, 0.0)
-        else -> LatLng(latlng[0], latlng[1])
-    }
-}
-
-
-fun List<CountryApi>.toCountries(): List<Country> {
+fun List<CountryDB>.toCountries(): List<Country> {
     return map {
         it.toCountry()
     }
 }
 
-fun Country.toCountryApi(): CountryApi {
+fun Country.toCountryDB(): CountryDB {
     return run {
-        CountryApi(
+        CountryDB(
             name = name,
             nativeName = nativeName,
             alpha2Code = alpha2Code,
@@ -48,7 +40,7 @@ fun Country.toCountryApi(): CountryApi {
             population = population,
             area = area,
             demonym = demonym,
-            latlng = listOf(latlng.lat, latlng.lng),
+            latlng = com.countries.persistency.LatLng(latlng.lat, latlng.lng),
             continent = continent,
             region = region,
             borderCountryAlphaList = borderCountryAlphaList
@@ -56,8 +48,8 @@ fun Country.toCountryApi(): CountryApi {
     }
 }
 
-fun List<Country>.toCountriesApi(): List<CountryApi> {
+fun List<Country>.toCountriesDB(): List<CountryDB> {
     return map {
-        it.toCountryApi()
+        it.toCountryDB()
     }
 }
