@@ -1,1 +1,1 @@
-include ':app', ':data-lib', ':listofcountries', ':detailedcountry', ':network', ':database', ':navigator', ':ui-lib'
+include ':app', ':data-lib', ':countries-list-feature', ':detailed-country-feature', ':network', ':database', ':navigator', ':ui-lib'
