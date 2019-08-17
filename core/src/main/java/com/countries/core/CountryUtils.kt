@@ -1,5 +1,6 @@
 package com.countries.core
 
+import com.countries.core.models.Country
 import java.math.RoundingMode
 import java.text.DecimalFormat
 
@@ -9,7 +10,7 @@ private const val THOUSAND = 1_000f
 private const val TEN_THOUSAND = 10_000f
 private const val MILLION = 1_000_000f
 
-fun getFlagUrl(alphaCode2: String) = FLAGS_URL + alphaCode2.toLowerCase() + ".gif"
+fun Country.getFlagUrl() = FLAGS_URL + this.alpha2Code.toLowerCase() + ".gif"
 
 private val areaFormat = DecimalFormat("#.#").apply {
     roundingMode = RoundingMode.DOWN

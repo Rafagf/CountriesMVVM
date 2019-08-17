@@ -10,7 +10,7 @@ fun Country.map(resources: Resources): CountryDetailedModel {
     apply {
         return CountryDetailedModel(
             name = name,
-            flag = getFlagUrl(alpha2Code),
+            flag = getFlagUrl(),
             capital = getCapital(capital),
             continent = getContinent(continent),
             region = getRegion(region),
