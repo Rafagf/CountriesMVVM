@@ -1,6 +1,6 @@
 package com.countries.detailedcountry
 
-import com.countries.core.models.LatLng
+import com.countries.data.models.LatLng
 
 object CountryDetailedModelFixture {
     fun aCountry(name: String = "Spain"): CountryDetailedModel {

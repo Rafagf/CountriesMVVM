@@ -1,9 +1,9 @@
 package com.countries.listofcountries
 
 import android.content.res.Resources
-import com.countries.core.getFlagUrl
-import com.countries.core.models.Country
-import com.countries.core.toPopulationFormat
+import com.countries.data.models.Country
+import com.countries.data.models.getFlagUrl
+import com.countries.ui.toPopulationFormat
 
 fun Country.map(resources: Resources): CountryListModel {
     apply {

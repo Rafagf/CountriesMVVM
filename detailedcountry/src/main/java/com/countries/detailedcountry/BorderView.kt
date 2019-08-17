@@ -4,8 +4,8 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
-import com.countries.core.gone
-import com.countries.core.visible
+import com.countries.ui.gone
+import com.countries.ui.visible
 import kotlinx.android.synthetic.main.border_view.view.*
 
 class BorderView @JvmOverloads constructor(

@@ -1,7 +1,7 @@
 package com.countries.listofcountries
 
-import com.countries.core.models.Country
-import com.countries.core.models.LatLng
+import com.countries.data.models.Country
+import com.countries.data.models.LatLng
 
 object CountryFixture {
     fun aCountry(

@@ -1,10 +1,10 @@
 package com.countries.detailedcountry
 
 import android.content.res.Resources
-import com.countries.core.getFlagUrl
-import com.countries.core.models.Country
-import com.countries.core.toAreaFormat
-import com.countries.core.toPopulationFormat
+import com.countries.data.models.Country
+import com.countries.data.models.getFlagUrl
+import com.countries.ui.toAreaFormat
+import com.countries.ui.toPopulationFormat
 
 fun Country.map(resources: Resources): CountryDetailedModel {
     apply {
@@ -44,7 +44,8 @@ private fun getDemonym(demonym: String?, resources: Resources) = when {
 
 }
 
-private fun getNativeName(nativeName: String, resources: Resources) = "${resources.getText(R.string.native_name)}: $nativeName"
+private fun getNativeName(nativeName: String, resources: Resources) =
+    "${resources.getText(R.string.native_name)}: $nativeName"
 
 private fun getArea(area: String?, resources: Resources) = when {
     area != null && area.isNotEmpty() -> "${resources.getText(R.string.area)}: ${area.toFloat().toAreaFormat()}"

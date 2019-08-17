@@ -1,6 +1,6 @@
 package com.countries.detailedcountry
 
-import com.countries.core.models.LatLng
+import com.countries.data.models.LatLng
 
 data class CountryDetailedModel(
     val name: String,

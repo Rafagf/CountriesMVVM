@@ -1,6 +1,6 @@
 package com.countries.detailedcountry
 
-import com.countries.core.repository.CountriesRepository
+import com.countries.data.repository.CountriesRepository
 import io.reactivex.Observable
 import io.reactivex.Single
 import javax.inject.Inject

@@ -8,15 +8,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.countries.core.gone
-import com.countries.core.isAtTop
-import com.countries.core.visible
-import com.countries.core.visibleOrGone
 import com.countries.navigator.AppNavigator
-import com.countries.ui.applyTheme
-import com.countries.ui.getColorFromTheme
-import com.countries.ui.setStatusBarColor
-import com.countries.ui.toggleTheme
+import com.countries.ui.*
 import com.miguelcatalan.materialsearchview.MaterialSearchView
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_country_list.*

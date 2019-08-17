@@ -49,7 +49,7 @@ dependencies {
 
     implementation project(path: ':listofcountries')
     implementation project(path: ':detailedcountry')
-    implementation project(path: ':core')
+    implementation project(path: ':data-lib')
     implementation project(path: ':network')
     implementation project(path: ':database')
     implementation project(path: ':navigator')

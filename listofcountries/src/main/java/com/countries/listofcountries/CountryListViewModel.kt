@@ -3,7 +3,7 @@ package com.countries.listofcountries
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.countries.core.models.Country
+import com.countries.data.models.Country
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
