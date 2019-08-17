@@ -21,9 +21,5 @@ fun View.visible() {
     visibility = View.VISIBLE
 }
 
-fun Activity.setStatusBarColor(@ColorInt color: Int) {
-    this.window.statusBarColor = color
-}
-
 fun LinearLayoutManager.isAtTop() = findFirstCompletelyVisibleItemPosition() == 0
 

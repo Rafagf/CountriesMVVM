@@ -7,6 +7,7 @@ import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.View
 import android.widget.ImageView
+import androidx.annotation.ColorInt
 import com.countries.ui.theming.Preferences
 import com.countries.ui.theming.Theme
 import com.squareup.picasso.Picasso
@@ -56,4 +57,8 @@ fun Context.loadImage(url: String, view: ImageView) {
     Picasso.with(this)
         .load(url)
         .into(view)
+}
+
+fun Activity.setStatusBarColor(@ColorInt color: Int) {
+    this.window.statusBarColor = color
 }
