@@ -1,11 +1,11 @@
-package com.countries.data
+package com.countries.ui
 
 import com.countries.ui.toAreaFormat
 import com.countries.ui.toPopulationFormat
 import org.junit.Assert.*
 import org.junit.Test
 
-class CountryUtilsTest {
+class FormattingExtensionsTest {
 
     @Test
     fun toPopulationFormatTest() {

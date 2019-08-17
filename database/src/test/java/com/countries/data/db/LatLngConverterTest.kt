@@ -1,6 +1,7 @@
 package com.countries.data.db
 
-import com.countries.data.models.LatLng
+import com.countries.persistency.LatLng
+import com.countries.persistency.LatLngConverter
 import org.junit.Assert.assertEquals
 import org.junit.Test
 

@@ -1,5 +1,6 @@
-package com.countries.`data-lib`.db
+package com.countries.data.db
 
+import com.countries.persistency.BordersConverter
 import org.junit.Assert.assertEquals
 import org.junit.Test
 

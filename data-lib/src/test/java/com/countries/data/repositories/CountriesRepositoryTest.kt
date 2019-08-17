@@ -1,6 +1,8 @@
-package com.countries.`data-lib`.repositories
+package com.countries.data.repositories
 
-import com.countries.`data-lib`.models.CountryFixture
+import com.countries.data.repository.CountriesLocalDataSource
+import com.countries.data.repository.CountriesRemoteDataSource
+import com.countries.data.repository.CountriesRepository
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
@@ -84,4 +86,6 @@ class CountriesRepositoryTest {
             .assertValue(A_COUNTRY_WITH_ALPHA)
     }
 }
+
+
 
